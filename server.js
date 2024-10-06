@@ -6,7 +6,7 @@
  * Require Statements
  *************************/
 const express = require("express") 
-const expressLayouts = require("express-ejs-layouts")
+expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
@@ -27,16 +27,9 @@ app.use(static)
 /************************
  * Index Routes
  ************************/ 
-app.get("/", (req, res) => {
-  console.log("GET / route hit");
-  try {
-    res.render("index", { title: "Home" });
-  } catch (err) {
-    console.error("Error rendering index:", err);
-    res.status(500).send("Server error");
-  }
-});
-
+app.get("/", function(req, res){
+  res.render("index", {title: "Home"})
+})
 
 /* ***********************
  * Local Server Information
