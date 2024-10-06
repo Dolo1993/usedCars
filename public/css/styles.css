@@ -46,7 +46,7 @@ span {
 }
 /* Navigation */
 nav {
-  background-color:#353535;
+  background-color:#3a0ca3;
   padding: 10px; 
 }
  
@@ -61,7 +61,7 @@ nav li {
 }
 
 nav a {
-  color: black;
+  color:white;
   cursor: pointer;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -89,9 +89,22 @@ nav a:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px; 
+  margin-top: 150px;
+}
+
+.grid img {
+  width: 100%;
+  height: auto; 
+}
+
+
 /* Welcome section*/
 .welcome-section{  
-  background-color:#ffb803b4;
+  background-color:#ffb8034f;
   margin-top: 50px;
   margin-bottom: 20px;
 }
@@ -99,6 +112,10 @@ nav a:hover {
   font-size: 25px; 
   margin-left: 30px;
   
+}  
+
+.welcome-section h2{
+  margin-left: 30px;
 }
 
 /* Images*/
@@ -139,7 +156,8 @@ nav a:hover {
 }
 
 .review-section h2{ 
-  font-size: 20px;
+  font-size: 20px; 
+  margin-left: 20px;
   margin-bottom: 10px;
 }
 
@@ -175,75 +193,10 @@ nav a:hover {
   border-radius: 10px;
 } 
 
-
-/* Navigation and Classification Grid */
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  background-color: white; 
-  padding: 10px;
-}
-
-nav li {
-  color: #fff;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  margin-bottom: 5px;
-}
-
 nav li:hover {
   color: #ff9900;
 }
-
-#inv-display { 
-  background-color: white;
-  display: flex;
-  flex-wrap: wrap; 
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
-  align-content: center;
-  padding: 10px;
-}
-
-#inv-display li { 
-  /* background-color: white; */
-  width: 250px;
-  margin: 10px;
-  border: 1px solid #ddd;
-  padding: 10px;
-}
-
-.namePrice { 
-  background-color: white; 
-  margin-top: 10px;
-}
-
-hr { 
-  /* background-color: white; */
-  border: 0;
-  height: 1px;
-  background: #ddd;
-}
-
-h2 { 
-  background-color: white;
-  font-size: 18px; 
-  margin-bottom: 5px;
-} 
-h1 { 
-  background-color: white; 
-  text-align: center;
-  color: #333; 
-  margin-top: 30px;
-} 
-
-.notice { 
-background-color: #0000ff;
-  color: #ff0000; 
-}
-
+ 
 
 /* Footer*/
 footer {
@@ -255,25 +208,40 @@ footer {
 } 
 
 
+
 /* Larger car image */
 @media (max-width: 768px) {
   .large-screen-image {
-    display: none;
+    display: none; 
+  }
+} 
+.large-screen-image{
+  margin-top: 5px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; 
+  }
+
+  .small-screen-image {
+    margin-top: 5px; 
   }
 }
 
-/* Smaller car image */
+/* Hide the small car image on larger screens */
 @media (min-width: 769px) {
   .small-screen-image {
-    display: none;
-  } 
-  
+    display: none; 
+  }
 }
+
  
 /* Smaller screen background image */
 @media (max-width: 768px) {
   body {
-    background-image: url('/images/site/small_check.png'); /* Small screen background image */
+    background-image: url('/images/site/small_check.png'); 
   }
 }
  
