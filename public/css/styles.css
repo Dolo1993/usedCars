@@ -79,8 +79,9 @@ nav a:hover {
 }
 
 .main-card { 
+  position: relative; 
   width: 90%;
-  background-color: white; 
+  background-color: #f1faee; 
   margin-top: 20px;
   margin-bottom: 40px;
   padding: 20px;
@@ -118,12 +119,15 @@ nav a:hover {
   margin-left: 30px;
 }
 
-/* Images*/
-.own-today-image { 
-  position: relative; 
-  margin-bottom: 70px;
-  max-width: 100%;
-}  
+/* Own Today Image for large screen*/
+.own-today-image {
+  position: absolute; 
+  top: 450px; 
+  left: 400px; 
+  width: 200px; 
+  cursor: move; 
+  z-index: 10; 
+}
 .delorean-upgrade-section {
   display: grid; 
   float: left;
@@ -237,6 +241,15 @@ footer {
   }
 }
 
+/* own-today Media query for small screens */
+@media screen and (max-width: 768px) {
+  .own-today-image {
+    position: absolute; 
+    top: 450px; 
+    left: 150px; 
+    width: 90px; 
+  }
+}
  
 /* Smaller screen background image */
 @media (max-width: 768px) {
