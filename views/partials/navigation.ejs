@@ -1,9 +1,18 @@
+<!-- nav elements -->
+
 <nav aria-label="Primary navigation">
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/custom">Custom</a></li>
-        <li><a href="/sedan">Sedan</a></li>
-        <li><a href="/suv">SUV</a></li>
-        <li><a href="/truck">Truck</a></li>
-    </ul>
-</nav>
+    <div class="hamburger">☰</div>
+    <%- nav %> 
+
+</nav> 
+
+<!-- Dropdown menu for the nav element on small screen -->
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('nav ul');
+  
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+  </script>
+  

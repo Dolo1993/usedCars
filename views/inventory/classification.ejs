@@ -1,0 +1,19 @@
+<% 
+  // Check if 'title' is provided
+  if (title) { 
+%>
+    <!-- Display the title in an H1 element -->
+    
+    <h1><%= title %></h1>
+<% 
+  } else { 
+    // Redirect to the home page if 'title' is missing
+    res.redirect('/')
+  } 
+%>
+
+<!-- Placeholder for messages to display any notifications -->
+<%# messages() %>
+
+<!-- Render the 'grid' content dynamically -->
+<%- grid %>

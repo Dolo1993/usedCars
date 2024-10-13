@@ -44,6 +44,8 @@ span {
 #account a:hover{
   text-decoration: underline;
 }
+
+
 /* Navigation */
 nav {
   background-color:#3a0ca3;
@@ -70,6 +72,48 @@ nav a {
 nav a:hover {
   color: #f08080;
 }
+
+/* Hide the navigation items by default */
+nav ul {
+  display: none; 
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+}
+
+/* Show the navigation items when the 'show' class is added */
+nav ul.show {
+  display: block;
+  margin: 3px; 
+}
+
+/* Navigation items*/
+nav ul li {
+  padding: 5px; 
+  margin: 5px 0; 
+  color: white;
+}
+
+/* Hamburger icon */
+.hamburger {
+  cursor: pointer; 
+  color: white; 
+  font-size: 24px;
+  margin-bottom: 5px; 
+}
+
+/* Media query to hide the hamburger on larger screens */
+@media (min-width: 769px) {
+  .hamburger {
+      display: none; 
+  }
+
+  nav ul {
+      display: flex; 
+  }
+}
+
+
 
 /* Main*/
 .background-image {

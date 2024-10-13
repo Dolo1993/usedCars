@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": true
+                }
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "render.com",
+            "connectString": "postgresql://dolomotorsdatabase:4VeKgkcuoqA19lkb6W4veaYbLYwcqgdM@dpg-cs0vp40gph6c73af3s00-a.oregon-postgres.render.com/dolocar"
+        }
+    ]
+}
