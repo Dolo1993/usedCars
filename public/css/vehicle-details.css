@@ -1,0 +1,78 @@
+/* General page styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+/* Main heading */
+#vehicle-details-page h1 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* vehicle details container */
+#vehicle-details-page .vehicle-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* vehicle image */
+#vehicle-details-page .vehicle-details img {
+    max-width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+#vehicle-details-page .vehicle-details img:hover {
+    transform: scale(1.05);
+}
+
+/* the vehicle information */
+#vehicle-details-page .vehicle-details p {
+    font-size: 1.2rem;
+    color: #34495e;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+#vehicle-details-page .vehicle-details p strong {
+    color: #2980b9;
+}
+
+/* Price*/
+#vehicle-details-page .vehicle-details p:first-of-type {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #e74c3c;
+}
+
+/* space between the fields */
+#vehicle-details-page .vehicle-details p + p {
+    margin-top: 5px;
+}
+
+
+
+/* Responsive*/
+@media (max-width: 768px) {
+    #vehicle-details-page .vehicle-details {
+        padding: 20px;
+    }
+
+    #vehicle-details-page h1 {
+        font-size: 1rem;
+    }
+}

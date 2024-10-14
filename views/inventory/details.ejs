@@ -1,14 +1,28 @@
-<% if (vehicle) { %>
-    <h1><%= vehicle.inv_make %> <%= vehicle.inv_model %> Details</h1>
-    <div class="vehicle-details">
-      <img src="<%= vehicle.inv_image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %>">
-      <p><strong>Price:</strong> $<%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %></p>
-      <p><strong>Year:</strong> <%= vehicle.inv_year %></p>
-      <p><strong>Miles:</strong> <%= new Intl.NumberFormat('en-US').format(vehicle.inv_miles) %> miles</p>
-      <p><strong>Color:</strong> <%= vehicle.inv_color %></p>
-      <p><strong>Description:</strong> <%= vehicle.inv_description %></p>
-    </div>
-  <% } else { %>
-    <p>Vehicle not found.</p>
-  <% } %>
-  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Details</title>
+
+  <link rel="stylesheet" href="/css/vehicle-details.css">
+</head>
+<body>
+  <!-- Container with unique ID for styling -->
+  <div id="vehicle-details-page">
+    <% if (vehicle) { %>
+        <h1><%= vehicle.inv_make %> <%= vehicle.inv_model %> Details</h1>
+        <div class="vehicle-details">
+          <img src="<%= vehicle.inv_image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %>">
+          <p><strong>Price:</strong> $<%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %></p>
+          <p><strong>Year:</strong> <%= vehicle.inv_year %></p>
+          <p><strong>Miles:</strong> <%= new Intl.NumberFormat('en-US').format(vehicle.inv_miles) %> miles</p>
+          <p><strong>Color:</strong> <%= vehicle.inv_color %></p>
+          <p><strong>Description:</strong> <%= vehicle.inv_description %></p>
+        </div>
+    <% } else { %>
+        <p>Vehicle not found.</p>
+    <% } %>
+  </div>
+</body>
+</html>
