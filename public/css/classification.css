@@ -41,20 +41,30 @@
 .namePrice span {
     font-size: 1.2rem;
     color: #780000;
-} 
-
+}
 
 h1{ 
     font-size: 1.5rem; 
     margin-top: 20px;
     margin-bottom: 20px;
-  }
- 
+}
 
+/* Responsive adjustments for tablets */
+@media (max-width: 1024px) {
+    #inv-display {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
 
-/* 1 column on mobile */
+/* Ensure one column on mobile */
 @media (max-width: 768px) {
     #inv-display {
-        grid-template-columns: 1fr;  
+        grid-template-columns: 1fr !important;  
+        gap: 10px; /* Adjust gap for smaller screens if needed */
+    }
+
+    /* Make sure list items adapt properly on smaller screens */
+    #inv-display li {
+        width: 100%;
     }
 }
