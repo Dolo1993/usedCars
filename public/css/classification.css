@@ -60,10 +60,10 @@ h1{
 @media (max-width: 768px) {
     #inv-display {
         grid-template-columns: 1fr !important;  
-        gap: 10px; /* Adjust gap for smaller screens if needed */
+        gap: 10px; 
     }
 
-    /* Make sure list items adapt properly on smaller screens */
+    /* adapt properly on smaller screens */
     #inv-display li {
         width: 100%;
     }
