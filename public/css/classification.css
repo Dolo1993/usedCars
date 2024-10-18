@@ -113,10 +113,16 @@ body {
   
     ul li {
       margin: 10px 0;
-    }
-  
+    } 
+
+
+
+    /* Responsive Design */
+@media (max-width: 768px) {
     #inv-display {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr; /* Force one column layout */
     }
   }
   
+ 
+}
