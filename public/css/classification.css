@@ -39,7 +39,7 @@ body {
   /* Vehicle Classification Grid */
   #inv-display {
     display: grid;
-    grid-template-columns:1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
     margin: 0 auto;
@@ -104,20 +104,10 @@ body {
     background: #ddd;
     margin: 10px 0;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    ul {
-      flex-direction: column;
-      align-items: center; /* Center align items in the navigation */
+
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%; /* Full width on small screens */
     }
-  
-    ul li {
-      margin: 10px 0; /* Adjust margin for vertical layout */
-    }
-  
-    #inv-display  {
-      grid-template-columns: 1fr; /* Force one column layout */
-    }
-  }
-  
+}
