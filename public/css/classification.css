@@ -53,7 +53,7 @@ h1{
 /* Responsive adjustments for tablets*/
 @media (max-width: 1024px) {
     #inv-display {
-        grid-template-columns: 1fr; 
+        grid-template-columns: repeat(2, 1fr); 
     }
 } 
 
