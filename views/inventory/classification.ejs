@@ -2,25 +2,21 @@
   // Check if 'title' is provided
   if (title) { 
 %>
-    <!-- Wrapper for responsive layout -->
-    <div class="container">
-        <!-- Display the title in an H1 element -->
-        <h1><%= title %></h1>
+    <!-- Display the title in an H1 element -->
     
-        <!-- Placeholder for messages to display any notifications -->
-        <%# messages() %>
-
-        <!-- Render the 'grid' content dynamically -->
-        <div id="inv-display">
-            <%- grid %> 
-        </div>
-    </div>
+    <h1><%= title %></h1>
 <% 
   } else { 
     // Redirect to the home page if 'title' is missing
-    res.redirect('/') 
+    res.redirect('/')
   } 
 %>
+
+<!-- Placeholder for messages to display any notifications -->
+<%# messages() %>
+
+<!-- Render the 'grid' content dynamically -->
+<%- grid %> 
 
 <!-- CSS reference -->
 <link rel="stylesheet" href="/css/classification.css">
