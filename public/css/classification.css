@@ -107,13 +107,7 @@ hr {
 
 /* Media query for responsiveness */
 @media (max-width: 768px) {
-    .container {
-        display: flex;          /* Flexbox layout */
-        flex-direction: column; /* Stack items vertically */
-        align-items: center;    /* Center items */
-        width: 100%;           /* Full width on small screens */
-    }
-
+    /* Stacking layout on small screens */
     #inv-display {
         grid-template-columns: 1fr; /* One column on small screens */
     }
