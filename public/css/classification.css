@@ -116,7 +116,7 @@ body {
       margin: 10px 0; /* Adjust margin for vertical layout */
     }
   
-    #inv-display {
+    #inv-display li {
       grid-template-columns: 1fr; /* Force one column layout */
     }
   }
