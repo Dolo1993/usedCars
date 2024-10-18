@@ -108,6 +108,8 @@ body {
 
 @media (max-width: 768px) {
     .container {
+        display: grid;
+        grid-template-columns: 1fr;
         width: 100%; /* Full width on small screens */
     }
 }
