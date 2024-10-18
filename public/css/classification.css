@@ -1,13 +1,8 @@
-/* Ensure all elements box-sizing is consistent */
-* {
-    box-sizing: border-box;
-}
-
 /* inventory grid */
 #inv-display {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 20px; 
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -21,7 +16,6 @@
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%; /* Ensure the list items take full width */
 }
 
 #inv-display li:hover {
@@ -59,27 +53,18 @@ h1 {
 /* Responsive adjustments for tablets */
 @media (max-width: 1024px) {
     #inv-display {
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* One column on mobile with added specificity */
+/* Force 1 column on mobile screens */
 @media (max-width: 768px) {
     #inv-display {
-        grid-template-columns: 1fr !important;  
+        grid-template-columns: 1fr !important;  /* Override any previous grid layout */
         gap: 10px;
     }
 
-    /* List items must also adapt */
     #inv-display li {
-        width: 100% !important; /* Ensure list items take full width */
-    }
-}
-
-/* Flexbox fallback for extra small screens if needed */
-@media (max-width: 480px) {
-    #inv-display {
-        display: flex;
-        flex-direction: column;
+        width: 100% !important;  /* Ensure full-width of the list items */
     }
 }
