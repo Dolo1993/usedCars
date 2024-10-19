@@ -1,4 +1,4 @@
-/* inventory grid */
+/* Inventory Grid */
 #inv-display {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
@@ -8,55 +8,71 @@
     margin: 0;
 }
 
+/* Individual Inventory Item */
 #inv-display li {
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; 
 }
 
+/* Hover Effects for Inventory Item */
 #inv-display li:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    background-color: #f8f9fa; 
 }
 
+/* Image Styling */
 #inv-display img {
     max-width: 100%;
     height: auto;
     display: block;
     margin: 0 auto;
+    border-bottom: 2px solid #007bff; 
 }
 
+/* Name and Price Container */
 .namePrice {
-    padding: 10px;
+    padding: 15px; 
 }
 
+/* Vehicle Name Styling */
 .namePrice h2 {
-    font-size: 1rem;
+    font-size: 1.2rem; 
     margin: 10px 0;
+    color: #333; 
+    transition: color 0.3s ease;
 }
 
+/* Vehicle Name Hover Effect */
+.namePrice h2:hover {
+    color: #007bff; 
+}
+
+/* Price Styling */
 .namePrice span {
-    font-size: 1.2rem;
-    color: #780000;
-} 
-
-
-h1{ 
     font-size: 1.5rem; 
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
+    color: #780000; 
+    font-weight: bold; 
+}
 
-/* Responsive adjustments for tablets*/
+/* Title Styling */
+h1 { 
+    font-size: 1.8rem; 
+    margin: 20px 0;
+    text-align: center; 
+    color: #007bff; 
+}
+
+/* Responsive adjustments for tablets */
 @media (max-width: 1024px) {
     #inv-display {
         grid-template-columns: repeat(2, 1fr); 
     }
-} 
-
+}
 
 /* 1 column on mobile */
 @media (max-width: 768px) {
