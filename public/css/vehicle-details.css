@@ -1,7 +1,7 @@
 /* General page styling */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f9;
+    background-image: url('/images/site/small_check.jpg');
     margin: 0;
     padding: 20px;
     color: #333;
@@ -9,6 +9,7 @@ body {
 
 /* Main heading */
 #vehicle-details-page h1 {
+    background-color: white;
     font-size: 1.5rem;
     color: #2c3e50;
     margin-bottom: 20px;

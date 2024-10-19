@@ -14,9 +14,15 @@ const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute") 
 const session = require("express-session")
 const pool = require('./database/')
+const accountRoute = require('./routes/accountRoute'); 
+
 
 // Inventory routes
-app.use("/inv", inventoryRoute)
+app.use("/inv", inventoryRoute) 
+
+
+// Account routes
+app.use("/account", accountRoute);
 
 
 
@@ -33,6 +39,9 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 })) 
+ 
+
+
 
 
 // Express Messages Middleware
