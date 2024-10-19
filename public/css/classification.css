@@ -49,14 +49,7 @@ h1{
     margin-top: 20px;
     margin-bottom: 20px;
   }
-
-/* Responsive adjustments for tablets*/
-@media (max-width: 1024px) {
-    #inv-display {
-        grid-template-columns: repeat(2, 1fr); 
-    }
-} 
-
+ 
 
 /* 1 column on mobile */
 @media (max-width: 768px) {
