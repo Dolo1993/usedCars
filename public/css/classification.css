@@ -15,6 +15,7 @@
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Ensure list items take up full width in the column */
 }
 
 #inv-display li:hover {
@@ -43,24 +44,27 @@
     color: #780000;
 } 
 
-
-h1{ 
+h1 { 
     font-size: 1.5rem; 
     margin-top: 20px;
     margin-bottom: 20px;
-  }
+}
 
-/* Responsive adjustments for tablets*/
+/* Responsive adjustments for tablets */
 @media (max-width: 1024px) {
     #inv-display {
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr); /* Two columns for tablets */
     }
-} 
+}
 
-
-/* 1 column on mobile */
+/* Force 1 column on mobile */
 @media (max-width: 768px) {
     #inv-display {
-        grid-template-columns: 1fr;  
+        grid-template-columns: 1fr;  /* Single column for small screens */
+        gap: 10px; /* Optionally adjust gap for mobile */
+    }
+    
+    #inv-display li {
+        width: 100%; /* Ensure list items take up full width in the column */
     }
 }
