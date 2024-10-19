@@ -57,14 +57,14 @@ h1 {
     }
 }
 
-/* Force 1 column on mobile */
 @media (max-width: 768px) {
     #inv-display {
-        grid-template-columns: 1fr;  /* Single column for small screens */
-        gap: 10px; /* Optionally adjust gap for mobile */
+        grid-template-columns: 1fr !important;
     }
-    
+}
+
+@media (max-width: 768px) {
     #inv-display li {
-        width: 100%; /* Ensure list items take up full width in the column */
+        width: 100% !important;  /* Ensure grid items expand to full width */
     }
 }
