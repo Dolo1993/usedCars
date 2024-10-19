@@ -1,10 +1,9 @@
-/******* Change Box Model ***************/
+/******* Change Box Model ***************/ 
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 } 
-
 
 /* Body background */
 body {
@@ -12,25 +11,24 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   font-family: 'Arial', sans-serif;
-  height: 60%;
+  margin: 0;
 }
-
 
 /* Header */
 #top-header {  
-  background-color:#240046; 
-  color: black;
-  padding: 10px;
+  background-color: #240046; 
+  color: white; 
+  padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: -10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #top-header .siteName a {  
-  color:white;
+  color: white;
   text-decoration: none;
-  font-size: 1.5em;
+  font-size: 2em; 
 }
 
 span { 
@@ -40,22 +38,25 @@ span {
 #account a {
   color: white;
   text-decoration: none;
-}
-#account a:hover{
-  text-decoration: underline;
+  transition: color 0.3s ease; 
 }
 
+#account a:hover {
+  color: #f08080; 
+}
 
 /* Navigation */
 nav {
-  background-color:#3a0ca3;
-  padding: 10px; 
+  background-color: #3a0ca3;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
 }
- 
+
 nav ul {
   list-style: none;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap; 
 }
 
 nav li {
@@ -63,35 +64,35 @@ nav li {
 }
 
 nav a {
-  color:white;
+  color: white;
   cursor: pointer;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease; 
 }
 
 nav a:hover {
   color: #f08080;
+  transform: scale(1.1); 
 }
 
 /* Hide the navigation items by default */
 nav ul {
   display: none; 
-  list-style: none; 
   padding: 0; 
   margin: 0; 
 }
 
 /* Show the navigation items when the 'show' class is added */
 nav ul.show {
-  display: block;
+  display: flex;
+  flex-direction: column; 
   margin: 3px; 
 }
 
-/* Navigation items*/
+/* Navigation items */
 nav ul li {
   padding: 5px; 
   margin: 5px 0; 
-  color: white;
 }
 
 /* Hamburger icon */
@@ -105,17 +106,16 @@ nav ul li {
 /* Media query to hide the hamburger on larger screens */
 @media (min-width: 769px) {
   .hamburger {
-      display: none; 
+    display: none; 
   }
 
   nav ul {
-      display: flex; 
+    display: flex; 
+    flex-direction: row; 
   }
 }
 
-
-
-/* Main*/
+/* Main */
 .background-image {
   display: flex;
   justify-content: center;
@@ -125,67 +125,72 @@ nav ul li {
 .main-card { 
   position: relative; 
   width: 90%;
+  max-width: 1200px; 
   background-color: #f1faee; 
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin: 20px auto; 
   padding: 20px;
-  border-radius: 10px; 
-  border: 1px solid black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 15px; 
+  border: 1px solid #ccc; 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px; 
-  margin-top: 150px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: 20px; 
+  margin-top: 50px;
 }
 
 .grid img {
   width: 100%;
   height: auto; 
+  border-radius: 10px;
 }
 
-
-/* Welcome section*/
-.welcome-section{  
-  background-color:#ffb8034f;
-  margin-top: 50px;
-  margin-bottom: 20px;
+/* Welcome section */
+.welcome-section {  
+  position: relative;
+  background-color: rgba(255, 184, 3, 0.7); 
+  margin: 50px 0;
+  padding: 20px; 
+  border-radius: 10px; 
 }
-.welcome-section p{
-  font-size: 25px; 
+
+.welcome-section p {
+  display: grid;
+  font-size: 1.5em; 
   margin-left: 30px;
-  
-}  
+  margin-bottom: 40px;
+}
 
-.welcome-section h2{
+.welcome-section h2 {
   margin-left: 30px;
 }
 
-/* Own Today Image for large screen*/
+/* Own Today Image for large screens */
 .own-today-image {
   position: absolute; 
-  top: 450px; 
+  top: 200px; 
   left: 400px; 
   width: 200px; 
   cursor: move; 
   z-index: 10; 
 }
+
 .delorean-upgrade-section {
   display: grid; 
-  float: left;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px; 
   margin-top: 50px; 
-  
 }
 
-.delorean-upgrade-section p{
+.delorean-upgrade-section p {
   text-align: center;
-} 
-.welcome-section h2{
-  margin-bottom: 50px;
+  font-size: 1.1em; 
+}
+
+.welcome-section h2 {
+  margin-bottom: 20px;
 }
 
 .delorean-upgrade-section img {
@@ -194,68 +199,61 @@ nav ul li {
   display: block;
   margin: 0 auto;
 } 
-/* review area */
+
+/* Review area */
 .review-section {  
-  background-color:#f9dbbd; 
-  font-size: 25px;
+  background-color: #f9dbbd; 
+  font-size: 1.5em; 
   float: right;
   margin-bottom: 110px;
   transform: translate(-5px, 110px); 
+  padding: 20px; 
+  border-radius: 10px; 
 }
 
-.review-section h2{ 
-  font-size: 20px; 
+.review-section h2 { 
+  font-size: 1.5em; 
   margin-left: 20px;
   margin-bottom: 10px;
 }
 
-/* upgrade area */
-.delorean-upgrade-section p{ 
-  margin-bottom: 5px;
+/* Upgrade area */
+.delorean-upgrade-section p { 
+  margin-bottom: 10px;
 } 
 
-.delorean-upgrade-section p:nth-child(3) {
-  background-color:#450920;
-}
-
-.delorean-upgrade-section p:nth-child(4) {
-  background-color:#450920;
-}
-
-.delorean-upgrade-section p:nth-child(5) {
-  background-color:#450920;
-} 
+.delorean-upgrade-section p:nth-child(3),
+.delorean-upgrade-section p:nth-child(4),
+.delorean-upgrade-section p:nth-child(5),
 .delorean-upgrade-section p:last-child {
-  background-color:#450920;
-}
+  background-color: #450920;
+  color: white; 
+  padding: 10px; 
+  border-radius: 5px; 
+} 
 
 .delorean-upgrade-section p a {
-  background-color:white;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px; 
 }
 
+/* Large and small screen images */
 .large-screen-image,
 .small-screen-image { 
   position: relative; 
-  margin-top: -150px;
   max-width: 100%;
   border-radius: 10px;
-} 
-
-nav li:hover {
-  color: #ff9900;
 }
- 
 
-/* Footer*/
+/* Footer */
 footer {
-  text-align: left;
+  text-align: center; 
   padding: 20px; 
   background-color: #333;
   color: #fff; 
-  margin-bottom: -90px;
+  margin-top: 20px; 
 } 
-
-
 
 /* Larger car image */
 @media (max-width: 768px) {
@@ -263,9 +261,6 @@ footer {
     display: none; 
   }
 } 
-.large-screen-image{
-  margin-top: 5px;
-}
 
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
@@ -285,12 +280,12 @@ footer {
   }
 }
 
-/* own-today Media query for small screens */
+/* Own-today Media query for small screens */
 @media screen and (max-width: 768px) {
   .own-today-image {
     position: absolute; 
-    top: 450px; 
-    left: 150px; 
+    top: 170px; 
+    left: 160px; 
     width: 90px; 
   }
 }
@@ -301,5 +296,3 @@ footer {
     background-image: url('/images/site/small_check.png'); 
   }
 }
- 
- 
