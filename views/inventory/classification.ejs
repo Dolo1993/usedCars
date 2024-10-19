@@ -3,6 +3,7 @@
   if (title) { 
 %>
     <!-- Display the title in an H1 element -->
+    
     <h1><%= title %></h1>
 <% 
   } else { 
@@ -15,10 +16,7 @@
 <%# messages() %>
 
 <!-- Render the 'grid' content dynamically -->
-<!-- Add the inline style here to force one-column layout for testing -->
-<ul id="inv-display" style="grid-template-columns: 1fr !important;">
-    <%- grid %> 
-</ul>
+<%- grid %> 
 
 <!-- CSS reference -->
 <link rel="stylesheet" href="/css/classification.css">
