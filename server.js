@@ -39,9 +39,6 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 })) 
- 
-
-
 
 
 // Express Messages Middleware

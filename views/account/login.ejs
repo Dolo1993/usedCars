@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
+    <%- include('../partials/header') %>
     <div class="container">
-        <h1><%= title %></h1>
-
         <!-- Flash messages placeholder -->
         <% if (typeof messages !== 'undefined' && messages.length > 0) { %>
             <div class="flash-message">
@@ -20,7 +19,8 @@
         <% } %>
 
         <!-- Login form -->
-        <form class action="/account/login" method="post">
+        <form action="/account/login" method="post">
+            <h1><%= title %></h1>
             <label for="account_email">Email:</label>
             <input type="email" id="account_email" name="account_email" required>
             
@@ -28,10 +28,11 @@
             <input type="password" id="account_password" name="account_password" required>
             
             <button type="submit">Login</button>
-        </form>
 
-        <!-- Registration link -->
-        <p>Don't have an account? <a href="/account/register">Register here</a>.</p>
+            <!-- Registration link inside the form for better alignment -->
+            <p>Don't have an account? <a href="/account/register">Register here</a>.</p>
+        </form>
     </div>
+    <%- include('../partials/footer') %>
 </body>
 </html>
