@@ -1,22 +1,31 @@
-<% 
-  // Check if 'title' is provided
-  if (title) { 
-%>
-    <!-- Display the title in an H1 element -->
-    
-    <h1><%= title %></h1>
-<% 
-  } else { 
-    // Redirect to the home page if 'title' is missing
-    res.redirect('/')
-  } 
-%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title ? title : 'Default Title' %></title>
+    <link rel="stylesheet" href="/css/classification.css">
+</head>
+<body>
 
-<!-- Placeholder for messages to display any notifications -->
-<%# messages() %>
+  <% 
+    // Check if 'title' is provided
+    if (title) { 
+  %>
+      <!-- Display the title in an H1 element -->
+      <h1><%= title %></h1>
+  <% 
+    } else { 
+      // Redirect to the home page if 'title' is missing
+      res.redirect('/');
+    } 
+  %>
 
-<!-- Render the 'grid' content dynamically -->
-<%- grid %> 
+  <!-- Placeholder for messages to display any notifications -->
+  <%# messages() %>
 
-<!-- CSS reference -->
-<link rel="stylesheet" href="/css/classification.css">
+  <!-- Render the 'grid' content dynamically -->
+  <%- grid %> 
+
+</body>
+</html>
