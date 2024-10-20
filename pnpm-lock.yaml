@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      body-parser:
+        specifier: ^1.20.3
+        version: 1.20.3
       connect-flash:
         specifier: ^0.1.1
         version: 0.1.1
@@ -15,13 +18,13 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0
       dotenv:
-        specifier: ^16.0.3
+        specifier: ^16.4.5
         version: 16.4.5
       ejs:
         specifier: ^3.1.10
         version: 3.1.10
       express:
-        specifier: ^4.18.2
+        specifier: ^4.21.0
         version: 4.21.0
       express-ejs-layouts:
         specifier: ^2.5.1
@@ -33,7 +36,7 @@ importers:
         specifier: ^1.18.1
         version: 1.18.1
       pg:
-        specifier: ^8.8.0
+        specifier: ^8.13.0
         version: 8.13.0
     devDependencies:
       nodemon:
