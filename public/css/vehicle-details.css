@@ -1,11 +1,120 @@
-/* General page styling */
+ /******* Change Box Model ***************/ 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+} 
+
+/* Body background */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-image: url('/images/site/small_check.jpg');
-    margin: 0;
-    padding: 20px;
-    color: #333;
+  background-image: url('/images/site/small_check.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
 }
+
+/* Header */
+#top-header {  
+  background-color: #240046; 
+  color: white; 
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#top-header .siteName a {  
+  color: white;
+  text-decoration: none;
+  font-size: 2em; 
+}
+
+span { 
+  font-size: 16px;
+}
+
+#account a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease; 
+}
+
+#account a:hover {
+  color: #f08080; 
+}
+
+/* Navigation */
+nav {
+  background-color: #3a0ca3;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; 
+}
+
+nav li {
+  margin-bottom: 5px;
+}
+
+nav a {
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease; 
+}
+
+nav a:hover {
+  color: #f08080;
+  transform: scale(1.1); 
+}
+
+/* Hide the navigation items by default */
+nav ul {
+  display: none; 
+  padding: 0; 
+  margin: 0; 
+}
+
+/* Show the navigation items when the 'show' class is added */
+nav ul.show {
+  display: flex;
+  flex-direction: column; 
+  margin: 3px; 
+}
+
+/* Navigation items */
+nav ul li {
+  padding: 5px; 
+  margin: 5px 0; 
+}
+
+/* Hamburger icon */
+.hamburger {
+  cursor: pointer; 
+  color: white; 
+  font-size: 24px;
+  margin-bottom: 5px; 
+}
+
+/* Media query to hide the hamburger on larger screens */
+@media (min-width: 769px) {
+  .hamburger {
+    display: none; 
+  }
+
+  nav ul {
+    display: flex; 
+    flex-direction: row; 
+  }
+}
+
 
 /* Main heading */
 #vehicle-details-page h1 {
@@ -63,7 +172,17 @@ body {
 /* space between the fields */
 #vehicle-details-page .vehicle-details p + p {
     margin-top: 5px;
-}
+}  
+
+
+/* Footer */
+footer {
+    text-align: center; 
+    padding: 20px; 
+    background-color: #333;
+    color: #fff; 
+    margin-top: 20px; 
+  } 
 
 
 
