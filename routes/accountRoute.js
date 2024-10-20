@@ -11,11 +11,8 @@ router.get("/login", accountController.buildLogin)
 // Route for registration view
 router.get('/register', accountController.buildRegister);
 
-
-// Error handling middleware
-router.use((err, req, res, next) => {
-  console.error(err.stack)
-  res.status(500).send('Something went wrong!')
-})
+// Route to register an account
+router.post('/register', utilities.handleErrors(accountController.registerAccount));
+ 
 
 module.exports = router

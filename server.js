@@ -2,6 +2,7 @@
  * This server.js file is the primary file of the 
  * application. It is used to control the project.
  *******************************************/
+
 /* ***********************
  * Require Statements
  *************************/
@@ -14,21 +15,17 @@ const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute") 
 const session = require("express-session")
 const pool = require('./database/')
-const accountRoute = require('./routes/accountRoute'); 
-
-
-// Inventory routes
-app.use("/inv", inventoryRoute) 
-
-
-// Account routes
-app.use("/account", accountRoute);
-
-
+const accountRoute = require('./routes/accountRoute');
+const bodyParser = require("body-parser")
 
 /* ***********************
- * Middleware
+ * Middleware (place before routes)
  * ************************/
+
+// Body Parser Middleware
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
@@ -40,7 +37,6 @@ app.use(session({
   name: 'sessionId',
 })) 
 
-
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
@@ -48,23 +44,30 @@ app.use(function(req, res, next){
   next()
 })
 
-
 /* ***********************
  * View Engine and Templates
  *************************/ 
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") 
+app.set("layout", "./layouts/layout")
 
-/* *********************** 
- * Routes
+/* ***********************
+ * Routes (place after middleware)
  *************************/
-app.use(static) 
+
+// Static Routes
+app.use(static)
+
+// Inventory routes
+app.use("/inv", inventoryRoute)
+
+// Account routes
+app.use("/account", accountRoute)
 
 /************************
  * Index Routes
  ************************/ 
-app.get("/", baseController.buildHome);
+app.get("/", baseController.buildHome)
 
 /* ***********************
  * Local Server Information
