@@ -8,35 +8,38 @@
 </head>
 <body>
     <main> 
-           <!-- Display express messages on the form -->
-        <% if (messages && messages.length > 0) { %>
-            <div class="flash-message">
-              <% messages.forEach(function(message) { %>
-                <p><%= message %></p>
-              <% }) %>
-            </div>
-          <% } %> 
-
+        <!-- Display express messages on the form -->
+        <% if (errors) { %>
+            <ul class="notice">
+           <% errors.array().forEach(error => { %>
+             <li><%= error.msg %></li>
+          <%  }) %>
+           </ul>
+          <% } %>
 
         <form action="/account/register" method="post">
             <label for="account_firstname">First Name:</label>
             <input type="text" id="account_firstname" name="account_firstname" required>
-        
+
             <label for="account_lastname">Last Name:</label>
             <input type="text" id="account_lastname" name="account_lastname" required>
-        
+
             <label for="account_email">Email:</label>
-            <input type="email" id="account_email" name="account_email" required>
-        
+            <input type="email" id="account_email" name="account_email" required 
+                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+                   title="Please enter a valid email address. Example: user@example.com">
+
             <label for="account_password">Password:</label>
             <input type="password" id="account_password" name="account_password" required
-                   minlength="12" pattern="(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}">
+                   minlength="12" 
+                   pattern="(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}" 
+                   title="Password must be at least 12 characters long and include at least one uppercase letter, one digit, and one special character.">
+
             <small>Password must be at least 12 characters long and include at least one uppercase letter, one digit, and one special character.</small>
         
             <button type="submit">Register</button>
         </form>
         
     </main>
-     
 </body>
 </html>

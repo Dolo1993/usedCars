@@ -20,8 +20,9 @@ async function buildRegister(req, res, next) {
   let nav = await utilities.getNav();
   res.render("account/register", {
     title: "Register",
-    nav,
-    messages: req.flash("notice"), // Pass flash messages to the view if needed
+    nav, 
+    errors: null,
+    messages: req.flash("notice"), 
   });
 }
 
