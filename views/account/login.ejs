@@ -17,6 +17,7 @@
             </div>
         <% } %>
 
+
         <!-- Login form -->
         <form action="/account/login" method="post">
             <h1><%= title %></h1>
@@ -28,7 +29,7 @@
             <label for="account_password">Password:</label>
             <input type="password" id="account_password" name="account_password" required 
                    minlength="12" 
-                   title="Password must be at least 8 characters long.">
+                   title="Password must be at least 12 characters long.">
 
             <button type="submit">Login</button>
 
