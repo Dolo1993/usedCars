@@ -11,7 +11,7 @@ router.get("/detail/:invId", invController.buildByInvId)
 
 
 // Route to render the management page
-router.get("/management", invController.renderManagementPage);
+router.get("/", invController.renderManagementPage);
 
 
 module.exports = router;
