@@ -1,0 +1,141 @@
+/******* Change Box Model ***************/
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+/* Body background */
+body {
+    background-image: url('/images/site/small_check.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    color: #333;
+}
+
+/* Container */
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* Header */
+#top-header {
+    background-color: #240046;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#top-header .siteName a {
+    color: white;
+    text-decoration: none;
+    font-size: 2em;
+}
+
+span {
+    font-size: 16px;
+}
+
+#account a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#account a:hover {
+    color: #f08080;
+}
+
+/* Title styling */
+h2 {
+    color: #240046;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* Alert message styles */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: white;
+}
+
+.alert-success {
+    background-color: #28a745;
+}
+
+.alert-error {
+    background-color: #dc3545;
+}
+
+.alert-info {
+    background-color: #17a2b8;
+}
+
+.alert-warning {
+    background-color: #ffc107;
+}
+
+/* Button */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    text-decoration: none;
+    background-color: #240046;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.button:hover {
+    background-color: #4e148c;
+    transform: scale(1.05);
+}
+
+/* Flash message styles */
+.flash-message {
+    background-color: rgba(255, 69, 58, 0.8);
+    padding: 1rem;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem;
+} 
+
+
+
+/* Footer */
+footer {
+    display: block;
+    text-align: center; 
+    padding: 20px; 
+    background-color: #333;
+    color: #fff; 
+    margin-top: 136px; 
+}  
+
+
+@media (max-width: 600px) {
+    footer {
+      margin: 10px 0; 
+      padding: 15px 0;
+      margin-bottom: -50px;
+    }
+  }

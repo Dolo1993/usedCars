@@ -33,6 +33,25 @@ invCont.buildByInvId = async function (req, res, next) {
     nav,
     vehicle
   })
-}
+} 
+
+
+
+/* ***************************
+ *  Render Inventory Management Page
+ * ************************** */
+invCont.renderManagementPage = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav();
+    res.render("inventory/management", {  
+      title: "Inventory Management",
+      nav,
+      messages: [], 
+    });
+  } catch (error) {
+    console.error("Error rendering management page:", error);
+    next(error);
+  }
+};
 
 module.exports = invCont
