@@ -1,0 +1,170 @@
+ /******* Change Box Model ***************/ 
+ *,
+ *:before,
+ *:after {
+     box-sizing: border-box;
+ } 
+ 
+ /* Body background */
+ body {
+     background-image: url('/images/site/small_check.jpg');
+     background-size: cover;
+     background-repeat: no-repeat;
+     font-family: 'Arial', sans-serif;
+     margin: 0;
+     color: #333;
+ }
+ 
+ /* Header */
+ #top-header {  
+     background-color: #240046; 
+     color: white; 
+     padding: 15px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ }
+ 
+ #top-header .siteName a {  
+     color: white;
+     text-decoration: none;
+     font-size: 2em; 
+ }
+ 
+ span { 
+     font-size: 16px;
+ }
+ 
+ #account a {
+     color: white;
+     text-decoration: none;
+     transition: color 0.3s ease; 
+ }
+  
+ #account a:hover {
+     color: #f08080; 
+ }
+
+
+/* Container */
+.container {
+    background-color: #ffffffde; 
+    max-width: 500px;
+    width: 90%;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    margin: 20px auto;
+    text-align: center;
+    animation: fadeIn 0.7s ease-in-out;
+  }
+  
+  /* Header in Container */
+  .container h2 {
+    font-size: 2em;
+    color: #240046;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* Alert Messages */
+  .alert {
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1em;
+  }
+  
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  /* Form */
+  form label {
+    display: block;
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  
+  form input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  form input[type="text"]:focus {
+    border-color: #240046;
+    box-shadow: 0 0 5px rgba(36, 0, 70, 0.3);
+  }
+  
+  /* Error Message */
+  #errorMsg {
+    color: #d9534f;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+  }
+  
+  /* Submit Button */
+  button[type="submit"] {
+    background-color: #240046;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #5a189a;
+    box-shadow: 0 5px 10px rgba(36, 0, 70, 0.3);
+    transform: translateY(-2px);
+  }
+   
+  /* Fade-in Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
+
+
+/* Footer */
+footer {
+    display: block;
+    text-align: center; 
+    padding: 20px; 
+    background-color: #333;
+    color: #fff; 
+    margin-top: 99px; 
+}  
+
+
+@media (max-width: 600px) {
+    footer {
+      margin: 10px 0; 
+      padding: 15px 0;
+      margin-bottom: -50px;
+    }
+  }

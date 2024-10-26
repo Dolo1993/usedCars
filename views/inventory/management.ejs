@@ -12,9 +12,9 @@
 <div class="container">
   <h2><%= title %></h2>
   
-  <% if (messages && messages.length > 0) { %>
-    <div class="alert alert-<%= messages[0].type %>">
-      <%= messages[0].msg %>
+  <% if (messages.length > 0) { %>
+    <div class="alert alert-success">
+      <%= messages[0] %>
     </div>
   <% } %>
   

@@ -38,6 +38,22 @@ async function getInventoryByInvId(inv_id) {
   } catch (error) {
     console.error("getInventoryByInvId error: " + error)
   }
+} 
+
+
+
+/* ***************************
+ * Function to insert classification into the database
+ * ************************** */
+async function insertClassification(classification_name) {
+  try {
+    const sql = `INSERT INTO public.classification (classification_name) VALUES ($1) RETURNING *`;
+    const result = await pool.query(sql, [classification_name]);
+    return result.rows[0];
+  } catch (error) {
+    console.error("insertClassification error:", error);
+    throw error;
+  }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByInvId }
+module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByInvId, insertClassification }

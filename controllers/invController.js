@@ -40,18 +40,65 @@ invCont.buildByInvId = async function (req, res, next) {
 /* ***************************
  *  Render Inventory Management Page
  * ************************** */
+
 invCont.renderManagementPage = async function (req, res, next) {
   try {
     let nav = await utilities.getNav();
+    
+    // Retrieve flash messages and pass them to the view
+    const messages = req.flash("info") || [];
+    
     res.render("inventory/management", {  
       title: "Inventory Management",
       nav,
-      messages: [], 
+      messages, // Pass messages to the view
     });
   } catch (error) {
     console.error("Error rendering management page:", error);
     next(error);
   }
 };
+
+
+
+
+/* ***************************
+ * Render Add Classification Form
+ * ************************** */
+invCont.renderAddClassificationForm = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("inventory/add-classification", {
+    title: "Add Classification",
+    nav,
+    messages: req.flash("info") || [], // Pass any flash messages
+  });
+};
+
+
+/* ***************************
+ *Function to handle form submission )
+ * ************************** */
+invCont.addClassification = async function (req, res, next) {
+  const { classification_name } = req.body;
+  try {
+    // Insert classification into the database
+    await invModel.insertClassification(classification_name);
+    
+    // Set success flash message
+    req.flash("info", "Classification added successfully.");
+    
+    // Redirect to management page
+    res.redirect("/inv"); 
+  } catch (error) {
+    console.error("Error adding classification:", error);
+    
+    // Set failure flash message
+    req.flash("error", "Failed to add classification.");
+    
+    // Redirect back to the add-classification form
+    res.redirect("/inv/add-classification");
+  }
+};
+
 
 module.exports = invCont

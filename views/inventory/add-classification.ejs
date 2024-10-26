@@ -4,24 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Classification</title>
-  <link rel="stylesheet" type="text/css" href="/css/">
+  <link rel="stylesheet" type="text/css" href="/css/add-classification.css">
 </head>
 <body>
 
 <div class="container">
   <h2>Add New Classification</h2>
-
-  <% if (messages.length > 0) { %>
-    <div class="alert alert-<%= messages[0].type %>">
-      <%= messages[0].msg %>
-    </div>
-  <% } %>
+  <span id="errorMsg"></span>
 
   <form action="/inv/add-classification" method="post" onsubmit="return validateForm()">
     <label for="classification_name">Classification Name:</label>
     <input type="text" id="classification_name" name="classification_name" required>
-    <span id="errorMsg"></span>
-
     <button type="submit">Add Classification</button>
   </form>
 </div>
