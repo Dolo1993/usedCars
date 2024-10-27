@@ -1,77 +1,93 @@
-<div class="card-container"> 
-    <h1>Add New Vehicle to Inventory</h1>
-
-    <% if (successMsg) { %>
-        <div class="alert alert-success">
-            <%= successMsg %>
-        </div>
-    <% } %>
-
-    <% if (errorMsgs.length > 0) { %>
-        <div class="alert alert-danger">
-            <ul>
-                <% errorMsgs.forEach(function(error) { %>
-                    <li><%= error %></li>
-                <% }) %>
-            </ul>
-        </div>
-    <% } %>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Vehicle to Inventory</title>
     <link rel="stylesheet" type="text/css" href="/css/add-inv.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card-container"> 
+            <h1>Add New Vehicle to Inventory</h1>
 
-    <form method="POST" action="/inv/add-inventory" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="classification_id">Classification:</label>
-            <select class="form-control" id="classification_id" name="classification_id" required>
-                <option value="" selected disabled>Choose Classification</option>
-                <option value="1">Custom</option>
-                <option value="2">Sport</option>
-                <option value="3">SUV</option>
-                <option value="4">Truck</option>
-                <option value="5">Sedan</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="inv_make">Make:</label>
-            <input type="text" class="form-control" id="inv_make" name="inv_make" value="<%= formData.inv_make || '' %>" required placeholder="Minimum 3 characters.">
-        </div>
-        <div class="form-group">
-            <label for="inv_model">Model:</label>
-            <input type="text" class="form-control" id="inv_model" name="inv_model" value="<%= formData.inv_model || '' %>" required minlength="3" placeholder="Minimum 3 characters.">
-        </div>
-        <div class="form-group">
-            <label for="inv_description">Description:</label>
-            <textarea class="form-control" id="inv_description" name="inv_description" rows="3" required><%= formData.inv_description || '' %></textarea>
-        </div>
-        <div class="form-group">
-            <label for="inv_image">Image Path:</label>
-            <input type="text" class="form-control" id="inv_image" name="inv_image" value="/images/vehicles/no-image.png" required>
-        </div>
-        <div class="form-group">
-            <label for="inv_thumbnail">Thumbnail Path:</label>
-            <input type="text" class="form-control" id="inv_thumbnail" name="inv_thumbnail" value="/images/vehicles/no-image.png" required>
-        </div>
-        <div class="form-group">
-            <label for="inv_price">Price:</label>
-            <input type="number" class="form-control" id="inv_price" name="inv_price" required step="0.01" placeholder="Decimal or integer.">
-            <small class="form-text text-muted">Decimal or integer.</small>
-        </div>
-        
-        <div class="form-group">
-            <label for="inv_year">Year:</label>
-            <input type="text" class="form-control" id="inv_year" name="inv_year" value="<%= formData.inv_year || '' %>" required pattern="[0-9]{4}" maxlength="4" placeholder="4-digit year">
-        </div>
-        <div class="form-group">
-            <label for="inv_miles">Miles:</label>
-            <input type="number" class="form-control" id="inv_miles" name="inv_miles" required placeholder="Digit-only.">
-            <small class="form-text text-muted">Digit-only.</small>
-        </div>
-        
-        <div class="form-group">
-            <label for="inv_color">Color:</label>
-            <input type="text" class="form-control" id="inv_color" name="inv_color" value="<%= formData.inv_color || '' %>" required>
-        </div>
+            <!-- Display success message if available -->
+            <% if (successMsg) { %>
+                <div class="alert alert-success">
+                    <%= successMsg %>
+                </div>
+            <% } %>
+            
+            <!-- Display error message if available -->
+            <% if (errorMsg) { %>
+                <div class="alert alert-danger">
+                    <%= errorMsg %>
+                </div>
+            <% } %>
 
-        <button type="submit" class="btn btn-primary">Add Vehicle</button> 
-    </form>
-</div>
+            <form method="POST" action="/inv/add-inventory" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="classification_id">Classification:</label>
+                    <select class="form-control" id="classification_id" name="classification_id" required>
+                        <option value="" selected disabled>Choose Classification</option>
+                        <option value="1" <%= formData.classification_id === '1' ? 'selected' : '' %>>Custom</option>
+                        <option value="2" <%= formData.classification_id === '2' ? 'selected' : '' %>>Sport</option>
+                        <option value="3" <%= formData.classification_id === '3' ? 'selected' : '' %>>SUV</option>
+                        <option value="4" <%= formData.classification_id === '4' ? 'selected' : '' %>>Truck</option>
+                        <option value="5" <%= formData.classification_id === '5' ? 'selected' : '' %>>Sedan</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="inv_make">Make:</label>
+                    <input type="text" class="form-control" id="inv_make" name="inv_make" value="<%= formData.inv_make || '' %>" required placeholder="Minimum 3 characters.">
+                </div>
+
+                <div class="form-group">
+                    <label for="inv_model">Model:</label>
+                    <input type="text" class="form-control" id="inv_model" name="inv_model" value="<%= formData.inv_model || '' %>" required minlength="3" placeholder="Minimum 3 characters.">
+                </div>
+
+                <div class="form-group">
+                    <label for="inv_description">Description:</label>
+                    <textarea class="form-control" id="inv_description" name="inv_description" rows="3" required><%= formData.inv_description || '' %></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="inv_image">Image Path:</label>
+                    <input type="text" class="form-control" id="inv_image" name="inv_image" value="<%= formData.inv_image || '/images/vehicles/no-image.png' %>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="inv_thumbnail">Thumbnail Path:</label>
+                    <input type="text" class="form-control" id="inv_thumbnail" name="inv_thumbnail" value="<%= formData.inv_thumbnail || '/images/vehicles/no-image.png' %>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="inv_price">Price:</label>
+                    <input type="number" class="form-control" id="inv_price" name="inv_price" value="<%= formData.inv_price || '' %>" required step="0.01" placeholder="Decimal or integer.">
+                    <small class="form-text text-muted">Decimal or integer.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="inv_year">Year:</label>
+                    <input type="text" class="form-control" id="inv_year" name="inv_year" value="<%= formData.inv_year || '' %>" required pattern="[0-9]{4}" maxlength="4" placeholder="4-digit year">
+                </div>
+
+                <div class="form-group">
+                    <label for="inv_miles">Miles:</label>
+                    <input type="number" class="form-control" id="inv_miles" name="inv_miles" value="<%= formData.inv_miles || '' %>" required placeholder="Digit-only.">
+                    <small class="form-text text-muted">Digit-only.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="inv_color">Color:</label>
+                    <input type="text" class="form-control" id="inv_color" name="inv_color" value="<%= formData.inv_color || '' %>" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add Vehicle</button> 
+            </form>
+        </div>
+    </div>
+</body>
+</html>

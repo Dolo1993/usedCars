@@ -58,29 +58,24 @@ invCont.renderManagementPage = async function (req, res, next) {
     next(error);
   }
 };
-
-
-
-
-/* ***************************
- * Render Add Classification Form
- * ************************** */
-invCont.renderAddClassificationForm = async function (req, res, next) {
-  let nav = await utilities.getNav();
-  res.render("inventory/add-classification", {
-    title: "Add Classification",
-    nav,
-    messages: req.flash("info") || [], // Pass any flash messages
-  });
-};
+ 
 
 
 /* ***************************
- *Function to handle form submission )
+ * Function to handle form submission
  * ************************** */
 invCont.addClassification = async function (req, res, next) {
   const { classification_name } = req.body;
   try {
+    // Check if classification already exists
+    const existingClassification = await invModel.getClassificationByName(classification_name);
+    if (existingClassification) {
+      // Set error flash message
+      req.flash("error", "Classification already exists.");
+      // Redirect back to the add-classification form
+      return res.redirect("/inv/add-classification");
+    }
+
     // Insert classification into the database
     await invModel.insertClassification(classification_name);
     
@@ -88,7 +83,7 @@ invCont.addClassification = async function (req, res, next) {
     req.flash("info", "Classification added successfully.");
     
     // Redirect to management page
-    res.redirect("/inv"); 
+    res.redirect("/inv");
   } catch (error) {
     console.error("Error adding classification:", error);
     
@@ -101,4 +96,19 @@ invCont.addClassification = async function (req, res, next) {
 };
 
 
-module.exports = invCont
+
+/* ***************************
+ * Render Add Classification Form
+ * ************************** */
+invCont.renderAddClassificationForm = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("inventory/add-classification", {
+    title: "Add Classification",
+    nav,
+    messages: req.flash("error"), 
+  });
+}; 
+
+
+
+module.exports = invCont;

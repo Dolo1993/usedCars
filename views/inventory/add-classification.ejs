@@ -10,7 +10,11 @@
 
 <div class="container">
   <h2>Add New Classification</h2>
-  <span id="errorMsg"></span>
+
+  <!-- Flash message for errors only -->
+  <% if (messages.length > 0) { %>
+    <span id="errorMsg"><%= messages[0] %></span>
+  <% } %>
 
   <form action="/inv/add-classification" method="post" onsubmit="return validateForm()">
     <label for="classification_name">Classification Name:</label>

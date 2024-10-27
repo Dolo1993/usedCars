@@ -1,11 +1,14 @@
 const pool = require("../database/")
 
+
 /* ***************************
  *  Get all classification data
  * ************************** */
 async function getClassifications(){
   return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
 }
+
+
 
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
@@ -24,6 +27,8 @@ async function getInventoryByClassificationId(classification_id) {
     console.error("getclassificationsbyid error " + error)
   }
 }
+
+
 
 
 /* ***************************
@@ -54,6 +59,30 @@ async function insertClassification(classification_name) {
     console.error("insertClassification error:", error);
     throw error;
   }
+} 
+
+
+
+/* ***************************
+ * Check if a classification name already exists in the database
+ * ************************** */
+async function getClassificationByName(classification_name) {
+  try {
+    const sql = `SELECT * FROM public.classification WHERE classification_name = $1`;
+    const result = await pool.query(sql, [classification_name]);
+    return result.rows[0]; // Return the classification if it exists
+  } catch (error) {
+    console.error("getClassificationByName error:", error);
+    throw error;
+  }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByInvId, insertClassification }
+
+
+module.exports = { 
+  getClassifications,
+  getInventoryByClassificationId, 
+  getInventoryByInvId, 
+  insertClassification, 
+  getClassificationByName
+};
