@@ -4,21 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Vehicle to Inventory</title>
-    <link rel="stylesheet" type="text/css" href="/css/add-inv.css">
+    <link rel="stylesheet" type="text/css" href="/css/add-classification.css">
 </head>
 <body>
     <div class="container">
         <div class="card-container"> 
             <h1>Add New Vehicle to Inventory</h1>
 
-            <!-- Display success message if available -->
-            <% if (successMsg) { %>
-                <div class="alert alert-success">
-                    <%= successMsg %>
-                </div>
-            <% } %>
-            
-            <!-- Display error message if available -->
             <% if (errorMsg) { %>
                 <div class="alert alert-danger">
                     <%= errorMsg %>
@@ -30,14 +22,12 @@
                     <label for="classification_id">Classification:</label>
                     <select class="form-control" id="classification_id" name="classification_id" required>
                         <option value="" selected disabled>Choose Classification</option>
-                        <option value="1" <%= formData.classification_id === '1' ? 'selected' : '' %>>Custom</option>
-                        <option value="2" <%= formData.classification_id === '2' ? 'selected' : '' %>>Sport</option>
-                        <option value="3" <%= formData.classification_id === '3' ? 'selected' : '' %>>SUV</option>
-                        <option value="4" <%= formData.classification_id === '4' ? 'selected' : '' %>>Truck</option>
-                        <option value="5" <%= formData.classification_id === '5' ? 'selected' : '' %>>Sedan</option>
+                        <% classifications.forEach(classification => { %>
+                            <option value="<%= classification.classification_id %>" <%= formData.classification_id === classification.classification_id ? 'selected' : '' %>><%= classification.classification_name %></option>
+                        <% }) %>
                     </select>
                 </div>
-
+                
                 <div class="form-group">
                     <label for="inv_make">Make:</label>
                     <input type="text" class="form-control" id="inv_make" name="inv_make" value="<%= formData.inv_make || '' %>" required placeholder="Minimum 3 characters.">
