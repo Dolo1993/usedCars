@@ -15,7 +15,7 @@ router.get("/", invController.renderManagementPage);
 router.get("/add-classification", invController.renderAddClassificationForm);
 
 // Route to handle classification form submission
-router.post("/add-classification", invController.addClassification); // Ensure this line is correct
+router.post("/add-classification", invController.addClassification); 
 
 // Route to render the Add Vehicle form
 router.get("/add-inventory", invController.renderAddVehicleForm);

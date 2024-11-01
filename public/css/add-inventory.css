@@ -1,0 +1,133 @@
+/******* Change Box Model ***************/
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+/* Container */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Card Container */
+.card-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.card-container h1 {
+    font-size: 1.8em;
+    color: #240046;
+    margin-bottom: 20px;
+}
+
+/* Form and Form Groups */
+form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #240046;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1em;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #240046;
+    box-shadow: 0 0 8px rgba(36, 0, 70, 0.3);
+}
+
+/* Alert Message */
+.alert {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.alert-danger {
+    color: #d90429;
+
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #240046;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #3c096c;
+    transform: translateY(-3px);
+}
+
+.btn-primary:active {
+    background-color: #5a189a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive Layout */
+@media (max-width: 600px) {
+    .card-container {
+        padding: 20px;
+    }
+
+    .card-container h1 {
+        font-size: 1.5em;
+    }
+
+    .form-control {
+        font-size: 0.9em;
+    }
+
+    .btn-primary {
+        padding: 10px 15px;
+    }
+}

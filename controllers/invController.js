@@ -119,7 +119,6 @@ invCont.addVehicle = async function (req, res, next) {
     inv_color,
   } = req.body;
 
-  console.log("Form data received:", req.body); // Log received data
 
   if (!classification_id || !inv_make || !inv_model || !inv_description || !inv_price || !inv_year || !inv_color) {
     req.flash("error", "All required fields must be filled.");
