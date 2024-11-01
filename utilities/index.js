@@ -16,13 +16,15 @@ Util.handleErrors = function (fn) {
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
-Util.getNav = async function (req, res, next) {
+Util.getNav = async function () {
   try {
     let data = await invModel.getClassifications();
-    console.log(data);
+    let classifications = data.rows || []; // Access rows safely
+    console.log(classifications);
+
     let list = "<ul>";
     list += '<li><a href="/" title="Return to home page">Home</a></li>';
-    data.rows.forEach((row) => {
+    classifications.forEach((row) => {
       list += "<li>";
       list +=
         '<a href="/inv/type/' +

@@ -16,16 +16,26 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const session = require("express-session")
 const pool = require('./database/')
 const accountRoute = require('./routes/accountRoute');
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const cors = require('cors');
+const morgan = require('morgan');
 
 /* ***********************
  * Middleware (place before routes)
- * ************************/
+ ************************/
+
+// Security Middleware
+app.use(helmet());
+app.use(cors());
+app.use(morgan('dev'));
 
 // Body Parser Middleware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// Session Middleware
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
@@ -35,6 +45,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   name: 'sessionId',
+  cookie: { secure: process.env.NODE_ENV === 'production' }, // Set to true in production
 })) 
 
 // Express Messages Middleware
@@ -68,6 +79,12 @@ app.use("/account", accountRoute)
  * Index Routes
  ************************/ 
 app.get("/", baseController.buildHome)
+
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
 
 /* ***********************
  * Local Server Information

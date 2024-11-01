@@ -1,24 +1,27 @@
-const express = require("express")
-const router = new express.Router() 
-const invController = require("../controllers/invController")    
-
-const { validateClassificationName } = require("../utilities/inventory-validation"); // Check the path here
+const express = require("express");
+const router = new express.Router(); 
+const invController = require("../controllers/invController");
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId); 
 
 // Route for individual vehicle details
-router.get("/detail/:invId", invController.buildByInvId) 
-
+router.get("/detail/:invId", invController.buildByInvId);
 
 // Route to render the management page
 router.get("/", invController.renderManagementPage);
 
-
 // Route to render the Add Classification form
 router.get("/add-classification", invController.renderAddClassificationForm);
 
-// Route to handle form submission with validation middleware
-router.post("/add-classification", validateClassificationName, invController.addClassification);
+// Route to handle classification form submission
+router.post("/add-classification", invController.addClassification); // Ensure this line is correct
+
+// Route to render the Add Vehicle form
+router.get("/add-inventory", invController.renderAddVehicleForm);
+
+// Route to handle adding a new vehicle
+router.post("/add-inventory", invController.addVehicle);
 
 module.exports = router;
+ 

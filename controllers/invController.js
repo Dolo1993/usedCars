@@ -1,114 +1,152 @@
-const invModel = require("../models/inventory-model")
-const utilities = require("../utilities/")
+const invModel = require("../models/inventory-model");
+const utilities = require("../utilities/");
 
-const invCont = {}
+const invCont = {};
 
 /* ***************************
  *  Build inventory by classification view
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
-  const classification_id = req.params.classificationId
-  const data = await invModel.getInventoryByClassificationId(classification_id)
-  const grid = await utilities.buildClassificationGrid(data)
-  let nav = await utilities.getNav()
-  const className = data[0].classification_name
+  const classification_id = req.params.classificationId;
+  const data = await invModel.getInventoryByClassificationId(classification_id);
+  const grid = await utilities.buildClassificationGrid(data);
+  let nav = await utilities.getNav();
+  const className = data[0]?.classification_name || "Unknown";
+  
   res.render("./inventory/classification", {
-    title: className + " vehicles",
+    title: `${className} vehicles`,
     nav,
     grid,
-  })
-} 
-
+  });
+};
 
 /* ***************************
  *  Build inventory details view
  * ************************** */
 invCont.buildByInvId = async function (req, res, next) {
-  const inv_id = req.params.invId
-  const data = await invModel.getInventoryByInvId(inv_id)
-  let nav = await utilities.getNav()
-  const vehicle = data[0]  
+  const inv_id = req.params.invId;
+  const data = await invModel.getInventoryByInvId(inv_id);
+  let nav = await utilities.getNav();
+  const vehicle = data[0];
+
   res.render("./inventory/details", {
     title: `${vehicle.inv_make} ${vehicle.inv_model} Details`,
     nav,
-    vehicle
-  })
-} 
-
-
+    vehicle,
+  });
+};
 
 /* ***************************
  *  Render Inventory Management Page
  * ************************** */
-
 invCont.renderManagementPage = async function (req, res, next) {
   try {
     let nav = await utilities.getNav();
-    
-    // Retrieve flash messages and pass them to the view
     const messages = req.flash("info") || [];
     
-    res.render("inventory/management", {  
+    res.render("inventory/management", {
       title: "Inventory Management",
       nav,
-      messages, // Pass messages to the view
+      messages,
     });
   } catch (error) {
     console.error("Error rendering management page:", error);
     next(error);
   }
 };
- 
-
 
 /* ***************************
- * Function to handle form submission
+ * Function to handle form submission for adding classification
  * ************************** */
 invCont.addClassification = async function (req, res, next) {
   const { classification_name } = req.body;
-  try {
-    // Check if classification already exists
-    const existingClassification = await invModel.getClassificationByName(classification_name);
-    if (existingClassification) {
-      // Set error flash message
-      req.flash("error", "Classification already exists.");
-      // Redirect back to the add-classification form
-      return res.redirect("/inv/add-classification");
-    }
 
-    // Insert classification into the database
+  try {
+    // Directly attempt to insert classification without validation
     await invModel.insertClassification(classification_name);
-    
-    // Set success flash message
     req.flash("info", "Classification added successfully.");
-    
-    // Redirect to management page
     res.redirect("/inv");
   } catch (error) {
     console.error("Error adding classification:", error);
-    
-    // Set failure flash message
     req.flash("error", "Failed to add classification.");
-    
-    // Redirect back to the add-classification form
     res.redirect("/inv/add-classification");
   }
 };
-
-
 
 /* ***************************
  * Render Add Classification Form
  * ************************** */
 invCont.renderAddClassificationForm = async function (req, res, next) {
   let nav = await utilities.getNav();
+  
   res.render("inventory/add-classification", {
     title: "Add Classification",
     nav,
-    messages: req.flash("error"), 
+    messages: req.flash("error"),
   });
-}; 
+};
 
+/* ***************************
+ * Render Add Vehicle Form
+ * ************************** */
+invCont.renderAddVehicleForm = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  const classifications = await invModel.getClassifications();
+  
+  res.render("inventory/add-inventory", {
+    title: "Add New Vehicle to Inventory",
+    nav,
+    classifications: classifications.rows,
+    formData: req.body || {},
+    errorMsg: req.flash("error"),
+  });
+};
+
+/* ***************************
+ * Handle Add Vehicle Submission
+ * ************************** */
+invCont.addVehicle = async function (req, res, next) {
+  const {
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+  } = req.body;
+
+  console.log("Form data received:", req.body); // Log received data
+
+  if (!classification_id || !inv_make || !inv_model || !inv_description || !inv_price || !inv_year || !inv_color) {
+    req.flash("error", "All required fields must be filled.");
+    return res.redirect("/inv/add-inventory");
+  }
+
+  try {
+    await invModel.insertVehicle(
+      classification_id,
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image || "/images/default.jpg",
+      inv_thumbnail || "/images/default-thumb.jpg",
+      inv_price,
+      inv_year,
+      inv_miles || 0,
+      inv_color
+    );
+    req.flash("info", "Vehicle added successfully.");
+    res.redirect("/inv");
+  } catch (error) {
+    console.error("Error adding vehicle:", error);
+    req.flash("error", "Failed to add vehicle.");
+    res.redirect("/inv/add-inventory");
+  }
+};
 
 
 module.exports = invCont;
