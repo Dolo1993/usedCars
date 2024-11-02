@@ -120,14 +120,14 @@ async function insertVehicle(
   }
 } 
 
-// Add this function to inventory-model.js
+// Function to get inventory form the classification
 async function getAllInventory() {
   const result = await pool.query(`
     SELECT i.*, c.classification_name FROM public.inventory AS i
     JOIN public.classification AS c ON i.classification_id = c.classification_id
     ORDER BY i.inv_id
   `);
-  return result.rows; // Return the array of inventory items
+  return result.rows; 
 }
 
 
