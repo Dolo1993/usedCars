@@ -120,6 +120,16 @@ async function insertVehicle(
   }
 } 
 
+// Add this function to inventory-model.js
+async function getAllInventory() {
+  const result = await pool.query(`
+    SELECT i.*, c.classification_name FROM public.inventory AS i
+    JOIN public.classification AS c ON i.classification_id = c.classification_id
+    ORDER BY i.inv_id
+  `);
+  return result.rows; // Return the array of inventory items
+}
+
 
 module.exports = { 
   getClassifications,
@@ -127,5 +137,6 @@ module.exports = {
   getInventoryByInvId, 
   insertClassification, 
   getClassificationByName,
-  insertVehicle
+  insertVehicle,
+  getAllInventory
 };

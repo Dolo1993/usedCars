@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Vehicle</title>
+</head>
+<body>
+    <h1>Edit Vehicle</h1>
+    <% if (errorMsg) { %>
+        <div class="alert alert-danger"><%= errorMsg %></div>
+    <% } %>
+
+    <form method="POST" action="/inv/update-inventory">
+        <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+        <!-- Remaining form fields similar to add-inventory.ejs, with vehicle values prefilled -->
+        <!-- ... -->
+        <button type="submit" class="btn btn-primary">Update Vehicle</button>
+    </form>
+</body>
+</html>

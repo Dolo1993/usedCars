@@ -174,4 +174,23 @@ invCont.addVehicle = async function (req, res, next) {
 };
 
 
+// Add this function to invController.js
+invCont.renderInventoryList = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav();
+    const inventoryItems = await invModel.getAllInventory(); // Function to get all inventory items
+
+    res.render("inventory/inventory-list", {
+      title: "Inventory List",
+      nav,
+      inventoryItems,
+      messages: req.flash("info") || [],
+    });
+  } catch (error) {
+    console.error("Error rendering inventory list:", error);
+    next(error);
+  }
+};
+
+
 module.exports = invCont;

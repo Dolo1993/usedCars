@@ -21,7 +21,10 @@ router.post("/add-classification", invController.addClassification);
 router.get("/add-inventory", invController.renderAddVehicleForm);
 
 // Route to handle adding a new vehicle
-router.post("/add-inventory", invController.addVehicle);
+router.post("/add-inventory", invController.addVehicle); 
+
+// Route to render inventory list
+router.get("/list", invController.renderInventoryList);  
 
 module.exports = router;
  

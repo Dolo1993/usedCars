@@ -1,0 +1,197 @@
+/* General body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('/images/site/small_check.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    color: #333;
+}
+
+/* Container styling */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Heading styles */
+h2 {
+    text-align: center;
+    color: #4CAF50;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Alert box styling */
+.alert {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    text-align: center;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: #4CAF50;
+    color: white;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+th {
+    font-weight: bold;
+}
+
+/* Button styling */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Button link styles for table actions */
+.table-action {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    font-size: 14px;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Edit button style */
+.edit-button {
+    background-color: #28a745; /* Green color */
+}
+
+.edit-button:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-2px);
+}
+
+/* Delete button style */
+.delete-button {
+    background-color: #dc3545; /* Red color */
+}
+
+.delete-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin: 15px;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    table {
+        font-size: 14px;
+        display: block; /* Allow table to take full width */
+        overflow-x: auto; /* Enable horizontal scrolling */
+    }
+
+    /* Stack the table rows into a column layout */
+    thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    th {
+        display: none; /* Hide table header in mobile view */
+    }
+
+    tr {
+        margin-bottom: 10px; /* Add space between rows */
+        background-color: #fff; /* Background for each row */
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px; /* Padding for the row */
+        border-radius: 8px; /* Round corners */
+    }
+
+    td {
+        text-align: right; /* Align text to the right */
+        position: relative; /* Positioning context for pseudo-element */
+    }
+
+    td::before {
+        content: attr(data-label); /* Display data-label for each td */
+        position: absolute;
+        left: 0;
+        width: 50%; /* Label takes half the width */
+        text-align: left; /* Align label to the left */
+        font-weight: bold; /* Bold label */
+        color: #4CAF50; /* Label color */
+    }
+
+    .button {
+        width: 100%; /* Full width button on small screens */
+        margin: 10px 0; /* Margin around buttons */
+        text-align: center;
+    }
+
+    .table-action {
+        width: 100%; /* Full width action buttons on small screens */
+        margin: 5px 0; /* Margin around action buttons */
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.8em;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    .alert {
+        font-size: 14px;
+    }
+}

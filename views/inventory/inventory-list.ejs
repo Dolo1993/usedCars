@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/css/inventory-list.css">
+</head>
+<body>
+    <div class="container">
+        <h2><%= title %></h2>
+        
+        <% if (messages.length > 0) { %>
+            <div class="alert alert-success">
+                <%= messages[0] %>
+            </div>
+        <% } %>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let item of inventoryItems) { %>
+                    <tr>
+                        <td><%= item.inv_make %></td>
+                        <td><%= item.inv_model %></td>
+                        <td><%= item.inv_description %></td>
+                        <td><%= item.inv_price %></td>
+                        <td>
+                            <a class="table-action edit-button" href="/inv/edit/<%= item.inv_id %>">Edit</a>
+                            <a class="table-action delete-button" href="/inv/delete/<%= item.inv_id %>">Delete</a> 
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        
+        <a class="button" href="/inv/add-inventory">Add New Inventory</a>
+    </div>
+</body>
+</html>
