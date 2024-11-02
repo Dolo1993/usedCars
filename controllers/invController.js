@@ -119,9 +119,35 @@ invCont.addVehicle = async function (req, res, next) {
     inv_color,
   } = req.body;
 
+  // Initialize an array to hold error messages
+  const errorMessages = [];
 
-  if (!classification_id || !inv_make || !inv_model || !inv_description || !inv_price || !inv_year || !inv_color) {
-    req.flash("error", "All required fields must be filled.");
+  // Check each required field individually
+  if (!classification_id) {
+    errorMessages.push("Classification is required.");
+  }
+  if (!inv_make) {
+    errorMessages.push("Make is required.");
+  }
+  if (!inv_model) {
+    errorMessages.push("Model is required.");
+  }
+  if (!inv_description) {
+    errorMessages.push("Description is required.");
+  }
+  if (!inv_price) {
+    errorMessages.push("Price is required.");
+  }
+  if (!inv_year) {
+    errorMessages.push("Year is required.");
+  }
+  if (!inv_color) {
+    errorMessages.push("Color is required.");
+  }
+
+  // If there are any error messages, flash them and redirect
+  if (errorMessages.length > 0) {
+    req.flash("error", errorMessages.join("\n"));
     return res.redirect("/inv/add-inventory");
   }
 
