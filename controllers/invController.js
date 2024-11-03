@@ -192,4 +192,33 @@ invCont.renderInventoryList = async function (req, res, next) {
 };
 
 
+// Function to get all inventory items with optional search
+invCont.renderInventoryList = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav();
+    const inventoryItems = await invModel.getAllInventory(); 
+    
+    // Get the search query from the request
+    const searchQuery = req.query.search ? req.query.search.toLowerCase() : '';
+    
+    // Filter inventory items based on search query
+    const filteredItems = inventoryItems.filter(item => 
+      item.inv_make.toLowerCase().includes(searchQuery) || 
+      item.inv_model.toLowerCase().includes(searchQuery)
+    );
+
+    res.render("inventory/inventory-list", {
+      title: "Inventory List",
+      nav,
+      inventoryItems: filteredItems,
+      messages: req.flash("info") || [],
+      searchQuery // Pass search query to the view
+    });
+  } catch (error) {
+    console.error("Error rendering inventory list:", error);
+    next(error);
+  }
+};
+
+
 module.exports = invCont;

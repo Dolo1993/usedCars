@@ -24,7 +24,9 @@ router.get("/add-inventory", invController.renderAddVehicleForm);
 router.post("/add-inventory", invController.addVehicle); 
 
 // Route to render inventory list
-router.get("/list", invController.renderInventoryList);  
+router.get("/list", invController.renderInventoryList);
+
+
 
 module.exports = router;
  
