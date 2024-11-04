@@ -111,59 +111,44 @@ invCont.addVehicle = async function (req, res, next) {
     inv_make,
     inv_model,
     inv_description,
-    inv_image,
-    inv_thumbnail,
     inv_price,
     inv_year,
     inv_miles,
-    inv_color,
+    inv_color
   } = req.body;
 
-  // Initialize an array to hold error messages
   const errorMessages = [];
 
-  // Check each required field individually
-  if (!classification_id) {
-    errorMessages.push("Classification is required.");
-  }
-  if (!inv_make) {
-    errorMessages.push("Make is required.");
-  }
-  if (!inv_model) {
-    errorMessages.push("Model is required.");
-  }
-  if (!inv_description) {
-    errorMessages.push("Description is required.");
-  }
-  if (!inv_price) {
-    errorMessages.push("Price is required.");
-  }
-  if (!inv_year) {
-    errorMessages.push("Year is required.");
-  }
-  if (!inv_color) {
-    errorMessages.push("Color is required.");
-  }
+  if (!classification_id) errorMessages.push("Classification is required.");
+  if (!inv_make) errorMessages.push("Make is required.");
+  if (!inv_model) errorMessages.push("Model is required.");
+  if (!inv_description) errorMessages.push("Description is required.");
+  if (!inv_price) errorMessages.push("Price is required.");
+  if (!inv_year) errorMessages.push("Year is required.");
+  if (!inv_color) errorMessages.push("Color is required.");
 
-  // If there are any error messages, flash them and redirect
   if (errorMessages.length > 0) {
     req.flash("error", errorMessages.join("\n"));
     return res.redirect("/inv/add-inventory");
   }
 
   try {
+    const inv_image = req.files?.inv_image ? `/images/vehicles/${req.files.inv_image[0].filename}` : "/images/default.jpg";
+    const inv_thumbnail = req.files?.inv_thumbnail ? `/images/vehicles/${req.files.inv_thumbnail[0].filename}` : "/images/default-thumb.jpg";
+
     await invModel.insertVehicle(
       classification_id,
       inv_make,
       inv_model,
       inv_description,
-      inv_image || "/images/default.jpg",
-      inv_thumbnail || "/images/default-thumb.jpg",
+      inv_image,
+      inv_thumbnail,
       inv_price,
       inv_year,
       inv_miles || 0,
       inv_color
     );
+
     req.flash("info", "Vehicle added successfully.");
     res.redirect("/inv");
   } catch (error) {
@@ -173,23 +158,6 @@ invCont.addVehicle = async function (req, res, next) {
   }
 };
 
- // Function to get all inventory items
-invCont.renderInventoryList = async function (req, res, next) {
-  try {
-    let nav = await utilities.getNav();
-    const inventoryItems = await invModel.getAllInventory(); 
-
-    res.render("inventory/inventory-list", {
-      title: "Inventory List",
-      nav,
-      inventoryItems,
-      messages: req.flash("info") || [],
-    });
-  } catch (error) {
-    console.error("Error rendering inventory list:", error);
-    next(error);
-  }
-};
 
 
 // Function to get all inventory items with optional search
@@ -250,7 +218,7 @@ invCont.deleteInventoryItem = async function (req, res, next) {
   const inv_id = req.params.invId;
   try {
     await invModel.deleteInventory(inv_id); // Call model to delete item
-    req.flash("info", "Item deleted successfully.");
+    req.flash("info", "Inventory deleted successfully.");
     res.redirect("/inv/list");
   } catch (error) {
     console.error("Error deleting inventory item:", error);

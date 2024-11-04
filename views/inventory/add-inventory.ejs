@@ -8,82 +8,79 @@
 </head>
 <body>
     <div class="container">
-        <div class="card-container"> 
+        <div class="card-container">
             <h1>Add New Vehicle to Inventory</h1>
 
             <% if (errorMsg) { %>
                 <div class="alert alert-danger">
                     <%= errorMsg %>
                 </div>
-            <% } %> 
+            <% } %>
 
-            <form method="POST" action="/inv/add-inventory">
-
+            <form action="/inv/add-inventory" method="POST" enctype="multipart/form-data">
                 <!-- Classification Dropdown -->
                 <div class="form-group">
                     <label for="classification_id">Classification:</label>
-                    <select class="form-control" id="classification_id" name="classification_id" required>
+                    <select name="classification_id" id="classification_id" class="form-control" required>
                         <option value="" selected disabled>Choose Classification</option>
                         <% classifications.forEach(classification => { %>
-                            <option value="<%= classification.classification_id %>" <%= formData.classification_id == classification.classification_id ? 'selected' : '' %>>
-                                <%= classification.classification_name %>
-                            </option>
-                        <% }) %>
+                            <option value="<%= classification.classification_id %>"><%= classification.classification_name %></option>
+                        <% }); %>
                     </select>
                 </div>
-                
+
                 <!-- Vehicle Make Field -->
                 <div class="form-group">
                     <label for="inv_make">Make:</label>
-                    <input type="text" class="form-control" id="inv_make" name="inv_make" value="<%= formData.inv_make || '' %>" required placeholder="e.g., Toyota">
+                    <input type="text" name="inv_make" id="inv_make" class="form-control" required />
                 </div>
 
                 <!-- Vehicle Model Field -->
                 <div class="form-group">
                     <label for="inv_model">Model:</label>
-                    <input type="text" class="form-control" id="inv_model" name="inv_model" value="<%= formData.inv_model || '' %>" required placeholder="e.g., Corolla">
+                    <input type="text" name="inv_model" id="inv_model" class="form-control" required />
                 </div>
 
                 <!-- Description Field -->
                 <div class="form-group">
                     <label for="inv_description">Description:</label>
-                    <textarea class="form-control" id="inv_description" name="inv_description" rows="3" required placeholder="Vehicle description..."><%= formData.inv_description || '' %></textarea>
+                    <textarea name="inv_description" id="inv_description" class="form-control" required></textarea>
                 </div>
 
-                <!-- Image Path Field -->
+                <!-- Image Upload Field -->
                 <div class="form-group">
-                    <label for="inv_image">Image Path:</label>
-                    <input type="text" class="form-control" id="inv_image" name="inv_image" value="<%= formData.inv_image || '' %>" required placeholder="e.g., /images/cars/car.jpg">
+                    <label for="inv_image">Image:</label>
+                    <input type="file" name="inv_image" id="inv_image" class="form-control-file" accept="image/*" required />
                 </div>
 
-                <!-- Thumbnail Path Field -->
+                <!-- Thumbnail Upload Field -->
                 <div class="form-group">
-                    <label for="inv_thumbnail">Thumbnail Path:</label>
-                    <input type="text" class="form-control" id="inv_thumbnail" name="inv_thumbnail" value="<%= formData.inv_thumbnail || '' %>" required placeholder="e.g., /images/cars/thumb.jpg">
+                    <label for="inv_thumbnail">Thumbnail:</label>
+                    <input type="file" name="inv_thumbnail" id="inv_thumbnail" class="form-control-file" accept="image/*" />
                 </div>
 
                 <!-- Price Field -->
                 <div class="form-group">
                     <label for="inv_price">Price:</label>
-                    <input type="number" class="form-control" id="inv_price" name="inv_price" value="<%= formData.inv_price || '' %>" required placeholder="e.g., 15000">
+                    <input type="number" name="inv_price" id="inv_price" class="form-control" required />
                 </div>
 
                 <!-- Year Field -->
                 <div class="form-group">
                     <label for="inv_year">Year:</label>
-                    <input type="number" class="form-control" id="inv_year" name="inv_year" value="<%= formData.inv_year || '' %>" required placeholder="e.g., 2020">
+                    <input type="number" name="inv_year" id="inv_year" class="form-control" required />
                 </div>
 
                 <!-- Miles Field -->
                 <div class="form-group">
                     <label for="inv_miles">Miles:</label>
-                    <input type="number" class="form-control" id="inv_miles" name="inv_miles" value="<%= formData.inv_miles || '' %>" required placeholder="e.g., 5000">
+                    <input type="number" name="inv_miles" id="inv_miles" class="form-control" />
                 </div>
 
                 <!-- Color Field -->
                 <div class="form-group">
                     <label for="inv_color">Color:</label>
-                    <input type="text" class="form-control" id="inv_color" name="inv_color" value="<%= formData.inv_color || '' %>" required placeholder="e.g., Red">
+                    <input type="text" name="inv_color" id="inv_color" class="form-control" required />
                 </div>
 
                 <!-- Submit Button -->
