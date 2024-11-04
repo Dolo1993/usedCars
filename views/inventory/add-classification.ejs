@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Classification</title>
-  <link rel="stylesheet" type="text/css" href="/css/add-classification.css">
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/add-classification.css">
 </head>
 <body>
+    <h1 class="page-title"><%= title %></h1>
 
-<div class="container">
-  <h2>Add New Classification</h2>
+    <div class="card">
+        <% if (messages.length > 0) { %>
+            <div class="message-container">
+                <% messages.forEach(msg => { %>
+                    <p class="message"><%= msg %></p>
+                <% }) %>
+            </div>
+        <% } %> 
 
-  <!-- Flash message for errors only -->
-  <% if (messages.length > 0) { %>
-    <span id="errorMsg"><%= messages[0] %></span>
-  <% } %>
+        <form class="classification-form" action="/inv/add-classification" method="POST">
+            <input class="classification-input" type="text" name="classification_name" placeholder="New Classification" required>
+            <button class="classification-submit" type="submit">Add New Classification</button>
+        </form>
 
-  <form action="/inv/add-classification" method="post" onsubmit="return validateForm()">
-    <label for="classification_name">Classification Name:</label>
-    <input type="text" id="classification_name" name="classification_name" required>
-    <button type="submit">Add Classification</button>
-  </form>
-</div>
+        <h2 class="existing-classifications-title">Existing Classifications</h2>
+        <ul class="classification-list">
+            <% classifications.forEach(classification => { %>
+                <li class="classification-item">
+                    <form class="update-form" action="/inv/update-classification" method="POST" style="display: inline;">
+                        <input type="hidden" name="classification_id" value="<%= classification.classification_id %>">
+                        <input class="classification-update-input" type="text" name="classification_name" value="<%= classification.classification_name %>" required>
+                        <button class="classification-update-submit" type="submit">Update</button>
+                    </form>
 
-<script>
-  function validateForm() {
-    const classification_name = document.getElementById('classification_name').value;
-    const errorMsg = document.getElementById('errorMsg');
-    
-    // Check if classificationName contains spaces or special characters
-    if (/\s/.test(classification_name) || /[^a-zA-Z0-9]/.test(classification_name)) {
-      errorMsg.innerText = 'Invalid classification name. It should not contain spaces or special characters.';
-      return false;
-    } else {
-      errorMsg.innerText = '';
-      return true;
-    }
-  }
-</script>
-
+                    <form action="/inv/classification/delete/<%= classification.classification_id %>" method="POST" style="display: inline;">
+                        <button class="classification-delete-submit" type="submit">Delete</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
 </body>
 </html>

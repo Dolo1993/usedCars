@@ -48,4 +48,11 @@ router.get("/delete/:invId", invController.confirmDelete);
 router.post("/delete/:invId", invController.deleteInventoryItem);
 
 
+// Route to handle updating a classification
+router.post("/update-classification", invController.updateClassification);
+
+// Route to delete classification
+router.post('/classification/delete/:classificationId', invController.deleteClassification);
+
+
 module.exports = router;

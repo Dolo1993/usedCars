@@ -76,14 +76,58 @@ invCont.addClassification = async function (req, res, next) {
 /* ***************************
  * Render Add Classification Form
  * ************************** */
+
+/* ***************************
+ * Render Add Classification Form with existing classifications
+ * ************************** */
 invCont.renderAddClassificationForm = async function (req, res, next) {
-  let nav = await utilities.getNav();
+  try {
+    let nav = await utilities.getNav();
+    const classifications = await invModel.getClassifications(); // Get all classifications
+    res.render("inventory/add-classification", {
+      title: "Add Classification",
+      nav,
+      messages: req.flash("error"),
+      classifications: classifications.rows, // Pass classifications to the view
+    });
+  } catch (error) {
+    console.error("Error rendering add classification form:", error);
+    next(error);
+  }
+};
+
+/* ***************************
+ * Handle Update Classification
+ * ************************** */
+invCont.updateClassification = async function (req, res, next) {
+  const { classification_id, classification_name } = req.body;
   
-  res.render("inventory/add-classification", {
-    title: "Add Classification",
-    nav,
-    messages: req.flash("error"),
-  });
+  try {
+    await invModel.updateClassification(classification_id, classification_name);
+    req.flash("info", "Classification updated successfully.");
+    res.redirect("/inv/add-classification");
+  } catch (error) {
+    console.error("Error updating classification:", error);
+    req.flash("error", "Failed to update classification.");
+    res.redirect("/inv/add-classification");
+  }
+};
+
+/* ***************************
+ * Delete Classification
+ * ************************** */
+invCont.deleteClassification = async function (req, res, next) {
+  const classification_id = req.params.classificationId;
+  
+  try {
+    await invModel.deleteClassification(classification_id);
+    req.flash("info", "Classification deleted successfully.");
+    res.redirect("/inv/add-classification");
+  } catch (error) {
+    console.error("Error deleting classification:", error);
+    req.flash("error", "Failed! Please delete all the inventory item in that classification");
+    res.redirect("/inv/add-classification");
+  }
 };
 
 /* ***************************
