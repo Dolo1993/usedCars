@@ -221,4 +221,43 @@ invCont.renderInventoryList = async function (req, res, next) {
 };
 
 
+/* ***************************
+ * Confirm Deletion of an Inventory Item
+ * ************************** */
+invCont.confirmDelete = async function (req, res, next) {
+  const inv_id = req.params.invId;
+  try {
+    // Fetch item details to display in the confirmation message
+    const item = await invModel.getInventoryByInvId(inv_id);
+    let nav = await utilities.getNav();
+    
+    // Render the confirmation page with the item details
+    res.render("inventory/confirm-delete", {
+      title: "Confirm Deletion",
+      nav,
+      item: item[0],  // Pass the item details to the view
+    });
+  } catch (error) {
+    console.error("Error rendering delete confirmation:", error);
+    next(error);
+  }
+};
+
+/* ***************************
+ * Delete Inventory Item
+ * ************************** */
+invCont.deleteInventoryItem = async function (req, res, next) {
+  const inv_id = req.params.invId;
+  try {
+    await invModel.deleteInventory(inv_id); // Call model to delete item
+    req.flash("info", "Item deleted successfully.");
+    res.redirect("/inv/list");
+  } catch (error) {
+    console.error("Error deleting inventory item:", error);
+    req.flash("error", "Failed to delete item.");
+    res.redirect("/inv/list");
+  }
+};
+
+
 module.exports = invCont;

@@ -41,7 +41,7 @@
                         <td><%= item.inv_price %></td>
                         <td>
                             <a class="table-action edit-button" href="/inv/edit/<%= item.inv_id %>">Edit</a>
-                            <a class="table-action delete-button" href="/inv/delete/<%= item.inv_id %>">Delete</a> 
+                            <a href="/inv/delete/<%= item.inv_id %>" class="table-action delete-button">Delete</a>
                         </td>
                     </tr>
                 <% } %>
