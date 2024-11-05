@@ -9,14 +9,15 @@
     <h1 class="page-title"><%= title %></h1>
 
     <div class="card">
-        <% if (messages.length > 0) { %>
-            <div class="message-container">
-                <% messages.forEach(msg => { %>
-                    <p class="message"><%= msg %></p>
-                <% }) %>
+        <!-- messages -->
+        <% if (messages && messages.length > 0) { %>
+            <div class="messages">
+              <% messages.forEach(message => { %>
+                <div class="alert alert-info"><%= message %></div>
+              <% }) %>
             </div>
-        <% } %> 
-
+          <% } %>
+          
         <form class="classification-form" action="/inv/add-classification" method="POST">
             <input class="classification-input" type="text" name="classification_name" placeholder="New Classification" required>
             <button class="classification-submit" type="submit">Add New Classification</button>

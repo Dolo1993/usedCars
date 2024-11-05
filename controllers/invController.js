@@ -83,11 +83,13 @@ invCont.addClassification = async function (req, res, next) {
 invCont.renderAddClassificationForm = async function (req, res, next) {
   try {
     let nav = await utilities.getNav();
-    const classifications = await invModel.getClassifications(); // Get all classifications
+    const classifications = await invModel.getClassifications();
+    const messages = req.flash("info").concat(req.flash("error")); // Combine success and error messages
+    
     res.render("inventory/add-classification", {
       title: "Add Classification",
       nav,
-      messages: req.flash("error"),
+      messages, // Pass messages to the view
       classifications: classifications.rows, // Pass classifications to the view
     });
   } catch (error) {
@@ -95,6 +97,7 @@ invCont.renderAddClassificationForm = async function (req, res, next) {
     next(error);
   }
 };
+
 
 /* ***************************
  * Handle Update Classification
