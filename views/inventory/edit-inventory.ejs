@@ -1,21 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Vehicle</title>
+  <%- include("../partials/head.ejs") %>
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/edit-inventory.css">
 </head>
-<body>
-    <h1>Edit Vehicle</h1>
-    <% if (errorMsg) { %>
-        <div class="alert alert-danger"><%= errorMsg %></div>
+<body class="body-container">
+  <main class="main-content">
+    <h1 class="title">Edit Inventory Item</h1>
+
+    <form action="/inv/edit/<%= item.inv_id %>" method="POST" enctype="multipart/form-data" class="edit-form"> 
+
+
+
+      
+    <!-- Display success or error message -->
+    <% if (successMsg && successMsg.length > 0) { %>
+      <p class="success-message"><%= successMsg %></p>
+    <% } %>
+    <% if (errorMsg && errorMsg.length > 0) { %>
+      <p class="error-message"><%= errorMsg %></p>
     <% } %>
 
-    <form method="POST" action="/inv/update-inventory">
-        <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
-        <!-- Remaining form fields similar to add-inventory.ejs, with vehicle values prefilled -->
-        <!-- ... -->
-        <button type="submit" class="btn btn-primary">Update Vehicle</button>
+
+
+      <label for="classification" class="form-label">Classification:</label>
+      <select id="classification" name="classification_id" class="form-select" required>
+        <% classifications.forEach(classification => { %>
+          <option value="<%= classification.classification_id %>"
+            <%= classification.classification_id === item.classification_id ? 'selected' : '' %>>
+            <%= classification.classification_name %>
+          </option>
+        <% }) %>
+      </select>
+
+      <label for="make" class="form-label">Make:</label>
+      <input type="text" id="make" name="inv_make" value="<%= item.inv_make %>" class="form-input" required>
+
+      <label for="model" class="form-label">Model:</label>
+      <input type="text" id="model" name="inv_model" value="<%= item.inv_model %>" class="form-input" required>
+
+      <label for="description" class="form-label">Description:</label>
+      <textarea id="description" name="inv_description" class="form-textarea" required><%= item.inv_description %></textarea>
+
+      <label for="price" class="form-label">Price:</label>
+      <input type="number" id="price" name="inv_price" value="<%= item.inv_price %>" class="form-input" required>
+
+      <label for="year" class="form-label">Year:</label>
+      <input type="number" id="year" name="inv_year" value="<%= item.inv_year %>" class="form-input" required>
+
+      <label for="miles" class="form-label">Miles:</label>
+      <input type="number" id="miles" name="inv_miles" value="<%= item.inv_miles %>" class="form-input" required>
+
+      <label for="color" class="form-label">Color:</label>
+      <input type="text" id="color" name="inv_color" value="<%= item.inv_color %>" class="form-input" required>
+
+      <!-- Image Upload Field -->
+      <label for="inv_image" class="form-label">Image:</label>
+      <input type="file" id="inv_image" name="inv_image" class="form-control-file" accept="image/*">
+      <input type="hidden" name="existing_image" value="<%= item.inv_image %>">
+
+      <!-- Thumbnail Upload Field -->
+      <label for="inv_thumbnail" class="form-label">Thumbnail:</label>
+      <input type="file" id="inv_thumbnail" name="inv_thumbnail" class="form-control-file" accept="image/*">
+      <input type="hidden" name="existing_thumbnail" value="<%= item.inv_thumbnail %>">
+
+      <button type="submit" class="submit-button">Update Item</button>
     </form>
+  </main>
 </body>
 </html>

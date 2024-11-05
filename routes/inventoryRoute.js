@@ -52,7 +52,14 @@ router.post("/delete/:invId", invController.deleteInventoryItem);
 router.post("/update-classification", invController.updateClassification);
 
 // Route to delete classification
-router.post('/classification/delete/:classificationId', invController.deleteClassification);
+router.post('/classification/delete/:classificationId', invController.deleteClassification); 
+
+// Route to render the edit inventory form
+router.get("/edit/:invId", invController.renderEditInventoryForm);
+
+// Route to handle the form submission for editing an inventory item, with file upload
+router.post("/edit/:invId", upload.fields([{ name: 'inv_image', maxCount: 1 }, { name: 'inv_thumbnail', maxCount: 1 }]), invController.updateInventoryItem);
+
 
 
 module.exports = router;

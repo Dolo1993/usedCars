@@ -1,0 +1,140 @@
+ /******* Change Box Model ***************/ 
+ *,
+ *:before,
+ *:after {
+     box-sizing: border-box;
+ } 
+ 
+ /* Body background */
+ body {
+     background-image: url('/images/site/small_check.jpg');
+     background-size: cover;
+     background-repeat: no-repeat;
+     font-family: 'Arial', sans-serif;
+     margin: 0;
+     color: #333;
+ }
+ 
+ /* Header */
+ #top-header {  
+     background-color: #240046; 
+     color: white; 
+     padding: 15px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ }
+ 
+ #top-header .siteName a {  
+     color: white;
+     text-decoration: none;
+     font-size: 2em; 
+ }
+ 
+ span { 
+     font-size: 16px;
+ }
+ 
+ #account a {
+     color: white;
+     text-decoration: none;
+     transition: color 0.3s ease; 
+ }
+ 
+ #account a:hover {
+     color: #f08080; 
+ }
+  
+
+/* Main title  */
+.title {
+    background-color: white;
+    font-size: 2em;
+    color: #240046;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Success and error messages */
+.success-message {
+    text-align: center;
+    background-color: #132a13;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.error-message {
+    text-align: center;
+    color: #F44336;
+    background-color: #FDECEA;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Form */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Form labels */
+.form-label {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* Input and select */
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Textarea */
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Submit button */
+.submit-button {
+    background-color: #240046;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background-color: #4A004E;
+}
+
+/* Footer */
+footer {
+    display: block;
+    text-align: center; 
+    padding: 20px; 
+    background-color: #333;
+    color: #fff; 
+    margin-top: 99px; 
+}
+ 

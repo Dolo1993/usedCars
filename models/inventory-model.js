@@ -170,6 +170,67 @@ async function deleteClassification(classification_id) {
   }
 }
 
+
+
+/* ***************************
+ * Update Vehicle in Database
+ * ************************** */
+async function updateVehicle(
+  inv_id,
+  classification_id,
+  inv_make,
+  inv_model,
+  inv_description,
+  inv_price,
+  inv_year,
+  inv_miles,
+  inv_color,
+  inv_image,
+  inv_thumbnail
+) {
+  const query = `
+    UPDATE public.inventory 
+    SET classification_id = $1, 
+        inv_make = $2, 
+        inv_model = $3, 
+        inv_description = $4, 
+        inv_price = $5, 
+        inv_year = $6, 
+        inv_miles = $7, 
+        inv_color = $8,
+        inv_image = $9,
+        inv_thumbnail = $10
+    WHERE inv_id = $11
+    RETURNING *;
+  `;
+  const values = [
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    inv_image,
+    inv_thumbnail,
+    inv_id
+  ];
+
+  try {
+    const result = await pool.query(query, values);
+    return result.rows[0];
+  } catch (error) {
+    console.error("updateVehicle error:", error);
+    throw error;
+  }
+}
+
+
+
+
+
+
 module.exports = { 
   getClassifications,
   getInventoryByClassificationId, 
@@ -180,5 +241,6 @@ module.exports = {
   getAllInventory,
   deleteInventory,
   updateClassification,  
-  deleteClassification  
+  deleteClassification,
+  updateVehicle
 };

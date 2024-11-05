@@ -275,4 +275,80 @@ invCont.deleteInventoryItem = async function (req, res, next) {
 };
 
 
+/* ***************************
+ * Render Edit Inventory Form
+ * ************************** */
+invCont.renderEditInventoryForm = async function (req, res, next) {
+  const inv_id = req.params.invId;
+  try {
+    let nav = await utilities.getNav();
+    const item = await invModel.getInventoryByInvId(inv_id);
+    const classifications = await invModel.getClassifications();
+
+    if (!item || item.length === 0) {
+      req.flash("error", "Inventory item not found.");
+      return res.redirect("/inv");
+    }
+
+    res.render("inventory/edit-inventory", {
+      title: "Edit Inventory Item",
+      nav,
+      item: item[0],  // Pass the inventory item details to the view
+      classifications: classifications.rows,
+      successMsg: req.flash("success"),
+      errorMsg: req.flash("error")
+    });
+  } catch (error) {
+    console.error("Error rendering edit inventory form:", error);
+    next(error);
+  }
+};
+
+/* ***************************
+ * Handle Update Inventory Submission
+ * ************************** */
+invCont.updateInventoryItem = async function (req, res, next) {
+  const inv_id = req.params.invId;
+  const {
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    existing_image,
+    existing_thumbnail
+  } = req.body;
+
+  // Check if new images were uploaded, otherwise use existing paths
+  const inv_image = req.files['inv_image'] ? `/images/vehicles/${req.files['inv_image'][0].filename}` : existing_image;
+  const inv_thumbnail = req.files['inv_thumbnail'] ? `/images/vehicles/${req.files['inv_thumbnail'][0].filename}` : existing_thumbnail;
+
+  try {
+    await invModel.updateVehicle(
+      inv_id,
+      classification_id,
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_price,
+      inv_year,
+      inv_miles || 0,
+      inv_color,
+      inv_image,
+      inv_thumbnail
+    );
+
+    req.flash("success", "Inventory item updated successfully.");
+    res.redirect(`/inv/edit/${inv_id}`);
+  } catch (error) {
+    console.error("Error updating inventory item:", error);
+    req.flash("error", "Failed to update inventory item.");
+    res.redirect(`/inv/edit/${inv_id}`);
+  }
+};
+
+
 module.exports = invCont;
