@@ -1,7 +1,10 @@
 const utilities = require("../utilities/");
-const { getClassifications } = require("../models/inventory-model"); // Adjust the path as necessary
+const { getClassifications } = require("../models/inventory-model");  
 const baseController = {};
 
+
+
+//Function to build the home page
 baseController.buildHome = async function(req, res) {
   try {
     // Fetch classifications from the database
@@ -17,5 +20,8 @@ baseController.buildHome = async function(req, res) {
     res.status(500).send("Error generating home page");
   }
 };
+
+
+
 
 module.exports = baseController;

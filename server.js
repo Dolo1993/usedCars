@@ -21,7 +21,8 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 const morgan = require('morgan');
-
+const cookieParser = require("cookie-parser")
+const utilities = require("./utilities")
 /* ***********************
  * Middleware (place before routes)
  ************************/
@@ -85,6 +86,9 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
+
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * Local Server Information

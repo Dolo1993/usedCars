@@ -1,5 +1,9 @@
 const invModel = require("../models/inventory-model");
 const Util = {};
+const jwt = require("jsonwebtoken")
+require("dotenv").config()  
+
+
 
 /**
  * Error handling middleware wrapper function.
@@ -13,13 +17,16 @@ Util.handleErrors = function (fn) {
   };
 };
 
+
+
+
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function () {
   try {
     let data = await invModel.getClassifications();
-    let classifications = data.rows || []; // Access rows safely
+    let classifications = data.rows || [];  
     console.log(classifications);
 
     let list = "<ul>";
@@ -43,6 +50,9 @@ Util.getNav = async function () {
     throw new Error("Unable to generate navigation at this time.");
   }
 };
+
+
+
 
 /* **************************************
  * Build the classification view HTML
@@ -102,4 +112,33 @@ Util.buildClassificationGrid = async function (data) {
   }
 };
 
+
+
+
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  if (req.cookies.jwt) {
+   jwt.verify(
+    req.cookies.jwt,
+    process.env.ACCESS_TOKEN_SECRET,
+    function (err, accountData) {
+     if (err) {
+      req.flash("Please log in")
+      res.clearCookie("jwt")
+      return res.redirect("/account/login")
+     }
+     res.locals.accountData = accountData
+     res.locals.loggedin = 1
+     next()
+    })
+  } else {
+   next()
+  }
+ }
+
+
+ 
 module.exports = Util;

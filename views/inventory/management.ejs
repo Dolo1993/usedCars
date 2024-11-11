@@ -12,8 +12,16 @@
 <div class="container">
   <h2><%= title %></h2>
   
+  <!-- error message -->
   <% if (messages.length > 0) { %>
     <div class="alert alert-success">
+      <%= messages[0] %>
+    </div>
+  <% } %>
+
+  <!-- success message -->
+  <% if (messages.length > 0) { %>
+    <div class="info">
       <%= messages[0] %>
     </div>
   <% } %>

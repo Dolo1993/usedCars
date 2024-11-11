@@ -3,29 +3,33 @@ const router = new express.Router();
 const accountController = require("../controllers/accountController");
 const utilities = require("../utilities/");
 const regValidate = require('../utilities/account-validation');
+const invController = require('../controllers/invController');
 
 
+// Route to get the management page
+router.get("/", invController.renderManagementPage);
 
-// Route to display the login view
+// Display the login view
 router.get("/login", accountController.buildLogin);
+ 
+// Process login data
+router.post(
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+);
 
 
-// Process the login data
-router.post("/login", utilities.handleErrors(accountController.loginAccount));
-
-
-// Route for registration view
+// Display the registration view
 router.get('/register', accountController.buildRegister);
 
-
-// Process the registration data
+// Process registration data
 router.post(
   "/register",
-  regValidate.registationRules(),
+  regValidate.registrationRules(),
   regValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
-); 
-
-
+);
 
 module.exports = router;

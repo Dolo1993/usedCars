@@ -1,7 +1,10 @@
 const invModel = require("../models/inventory-model");
 const utilities = require("../utilities/");
 
-const invCont = {};
+const invCont = {}; 
+
+
+
 
 /* ***************************
  *  Build inventory by classification view
@@ -18,7 +21,10 @@ invCont.buildByClassificationId = async function (req, res, next) {
     nav,
     grid,
   });
-};
+}; 
+
+
+
 
 /* ***************************
  *  Build inventory details view
@@ -36,6 +42,10 @@ invCont.buildByInvId = async function (req, res, next) {
   });
 };
 
+
+
+
+
 /* ***************************
  *  Render Inventory Management Page
  * ************************** */
@@ -43,7 +53,7 @@ invCont.renderManagementPage = async function (req, res, next) {
   try {
     let nav = await utilities.getNav();
     const messages = req.flash("info") || [];
-    
+
     res.render("inventory/management", {
       title: "Inventory Management",
       nav,
@@ -55,6 +65,11 @@ invCont.renderManagementPage = async function (req, res, next) {
   }
 };
 
+
+
+
+
+
 /* ***************************
  * Function to handle form submission for adding classification
  * ************************** */
@@ -62,7 +77,6 @@ invCont.addClassification = async function (req, res, next) {
   const { classification_name } = req.body;
 
   try {
-    // Directly attempt to insert classification without validation
     await invModel.insertClassification(classification_name);
     req.flash("info", "Classification added successfully.");
     res.redirect("/inv");
@@ -73,9 +87,9 @@ invCont.addClassification = async function (req, res, next) {
   }
 };
 
-/* ***************************
- * Render Add Classification Form
- * ************************** */
+
+
+
 
 /* ***************************
  * Render Add Classification Form with existing classifications
@@ -84,7 +98,7 @@ invCont.renderAddClassificationForm = async function (req, res, next) {
   try {
     let nav = await utilities.getNav();
     const classifications = await invModel.getClassifications();
-    const messages = req.flash("info").concat(req.flash("error")); // Combine success and error messages
+    const messages = req.flash("info").concat(req.flash("error"));  
     
     res.render("inventory/add-classification", {
       title: "Add Classification",
@@ -97,6 +111,9 @@ invCont.renderAddClassificationForm = async function (req, res, next) {
     next(error);
   }
 };
+
+
+
 
 
 /* ***************************
@@ -114,7 +131,12 @@ invCont.updateClassification = async function (req, res, next) {
     req.flash("error", "Failed to update classification.");
     res.redirect("/inv/add-classification");
   }
-};
+}; 
+
+
+
+
+
 
 /* ***************************
  * Delete Classification
@@ -133,6 +155,10 @@ invCont.deleteClassification = async function (req, res, next) {
   }
 };
 
+
+
+
+
 /* ***************************
  * Render Add Vehicle Form
  * ************************** */
@@ -148,6 +174,10 @@ invCont.renderAddVehicleForm = async function (req, res, next) {
     errorMsg: req.flash("error"),
   });
 };
+
+
+
+
 
 /* ***************************
  * Handle Add Vehicle Submission
@@ -207,6 +237,8 @@ invCont.addVehicle = async function (req, res, next) {
 
 
 
+
+
 // Function to get all inventory items with optional search
 invCont.renderInventoryList = async function (req, res, next) {
   try {
@@ -236,6 +268,9 @@ invCont.renderInventoryList = async function (req, res, next) {
 };
 
 
+
+
+
 /* ***************************
  * Confirm Deletion of an Inventory Item
  * ************************** */
@@ -258,6 +293,10 @@ invCont.confirmDelete = async function (req, res, next) {
   }
 };
 
+
+
+
+
 /* ***************************
  * Delete Inventory Item
  * ************************** */
@@ -273,6 +312,8 @@ invCont.deleteInventoryItem = async function (req, res, next) {
     res.redirect("/inv/list");
   }
 };
+
+
 
 
 /* ***************************
@@ -302,7 +343,11 @@ invCont.renderEditInventoryForm = async function (req, res, next) {
     console.error("Error rendering edit inventory form:", error);
     next(error);
   }
-};
+}; 
+
+
+
+
 
 /* ***************************
  * Handle Update Inventory Submission
@@ -349,6 +394,8 @@ invCont.updateInventoryItem = async function (req, res, next) {
     res.redirect(`/inv/edit/${inv_id}`);
   }
 };
+
+
 
 
 module.exports = invCont;

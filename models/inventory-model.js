@@ -1,5 +1,8 @@
 const pool = require("../database/");
 
+
+
+
 /* ***************************
  *  Get all classification data
  * ************************** */
@@ -7,6 +10,10 @@ async function getClassifications() {
   const result = await pool.query("SELECT * FROM public.classification ORDER BY classification_name");
   return result; // Return the entire result object
 }
+
+
+
+
 
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
@@ -26,6 +33,10 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
+
+
+
+
 /* ***************************
  *  Get a single vehicle's details by its ID
  * ************************** */
@@ -39,6 +50,11 @@ async function getInventoryByInvId(inv_id) {
     console.error("getInventoryByInvId error: " + error);
   }
 }
+
+
+
+
+
 
 /* ***************************
  * Function to insert classification into the database
@@ -54,6 +70,11 @@ async function insertClassification(classification_name) {
   }
 }
 
+
+
+
+
+
 /* ***************************
  * Check if a classification name already exists in the database
  * ************************** */
@@ -67,6 +88,11 @@ async function getClassificationByName(classification_name) {
     throw error;
   }
 }
+
+
+
+
+
 
 /* ***************************
  * Insert new vehicle
@@ -120,6 +146,11 @@ async function insertVehicle(
   }
 } 
 
+
+
+
+
+
 // Function to get inventory form the classification
 async function getAllInventory() {
   const result = await pool.query(`
@@ -129,6 +160,10 @@ async function getAllInventory() {
   `);
   return result.rows; 
 }
+
+
+
+
 
 
 /* ***************************
@@ -144,6 +179,12 @@ async function deleteInventory(inv_id) {
   }
 }
 
+
+
+
+
+
+
 /* ***************************
  * Update Classification
  * ************************** */
@@ -157,6 +198,11 @@ async function updateClassification(classification_id, classification_name) {
   }
 }
 
+
+
+
+
+
 /* ***************************
  * Delete Classification
  * ************************** */
@@ -169,6 +215,8 @@ async function deleteClassification(classification_id) {
     throw error;
   }
 }
+
+
 
 
 

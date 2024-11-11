@@ -1,5 +1,10 @@
 const { Pool } = require("pg")
 require("dotenv").config()
+
+
+
+
+
 /* ***************
  * Connection Pool
  * SSL Object needed for local testing of app
@@ -14,6 +19,9 @@ if (process.env.NODE_ENV == "development") {
       rejectUnauthorized: false,
     },
 })
+
+
+
 
 // Added for troubleshooting queries
 // during development
