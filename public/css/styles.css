@@ -39,7 +39,6 @@ span {
   color: white;
   text-decoration: none;
   transition: color 0.3s ease; 
-  font-size: 20px;
 }
 
 #account a:hover {
@@ -69,7 +68,6 @@ nav a {
   cursor: pointer;
   text-decoration: none;
   transition: color 0.3s ease, transform 0.3s ease; 
-  font-size: 25px;
 }
 
 nav a:hover {
@@ -116,7 +114,7 @@ nav ul li {
 .main-card { 
   position: relative; 
   width: 90%;
-  max-width: 1500px; 
+  max-width: 1200px; 
   background-color: #545643; 
   margin: 20px auto; 
   padding: 20px;
